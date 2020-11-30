@@ -19,7 +19,6 @@
 
 <header class="wow slideInRight">
     <div class="container">
-
         <div class="row rowAlign">
             <div class="menu-bar" onclick="">
                 <i class="fas fa-bars" id="icon-bar"></i>
@@ -34,7 +33,12 @@
                 <i id="searchShow" class="fas fa-search" style="cursor: pointer"></i>
                 <a href=""><i class="fas fa-user"></i></a>
                 <a href=""><i class="fas fa-heart"></i></a>
-                <a href=""><i class="fas fa-shopping-cart"></i></a>
+                <a href="{{ route('cart.index') }}">
+                    <i class="fas fa-shopping-cart">
+                        <span class="count-cart">{{ countCart('cart') }}</span>
+                    </i>
+
+                </a>
             </div>
         </div>
         <form id="form_search" action="{{ url('search') }}" method="get" style="text-align: center; display: none;">

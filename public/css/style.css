@@ -164,6 +164,19 @@ header .subFunctional a {
 header .subFunctional a:hover {
     color: #ff6f61
 }
+header .fa-shopping-cart{
+    position: relative;
+}
+header .count-cart{
+    color: #ffffff;
+    background: green;
+    border-radius: 35%;
+    width: 25px;
+    position: absolute;
+    top: -12px;
+    text-align: center;
+    padding: 1px;
+}
 
 header input[type='text'] {
     min-width: 50%;

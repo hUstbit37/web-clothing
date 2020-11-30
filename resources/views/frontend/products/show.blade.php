@@ -72,7 +72,14 @@
                         <input class="quantity" id="id_form-0-quantity"  name="form-0-quantity" value="1" type="number">
                         <button class="btn add1">+</button>
                     </div>
-                    <button id="add-order">Thêm vào giỏ hàng</button>
+                    <a href="{{ route('cart.store', ['id' => $product->id]) }}">
+                        <button id="add-order">Thêm vào giỏ hàng</button>
+                    </a>
+                    @if(Session::has('message'))
+                    <div class="alert alert-success" style="background: #c8e2d6; padding: 5px; height: 40px; width: 60%; line-height: 30px;">
+                        {{ Session::get('message') }}
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -91,12 +98,12 @@
                 @foreach($products as $product)
                     <div class="item">
                         <div class="image">
-                            <a href="{{ url($product->slug) }}/product">
+                            <a href="{{ url($product->slug).'/product' }}">
                                 <img src="{{ url('images/product-cover.jpg') }}" alt="{{ $product->name }}">
                             </a>
                             <div class="function">
                                 <a href=""><i class="fas fa-heart"></i></a>
-                                <a href="{{ url($product->slug) }}/product"><i class="fas fa-eye"></i></a>
+                                <a href="{{ url($product->slug).'/product' }}"><i class="fas fa-eye"></i></a>
                                 <a href=""><i class="fas fa-shopping-cart"></i></a>
                             </div>
                         </div>
@@ -114,14 +121,14 @@
     </list-product>
     <script>
         $(document).ready(function () {
-            $('.minus1').click(function () {
+            $('.minus1').on('click', function () {
                 let currentVal = parseInt($('#id_form-0-quantity').val());
                 console.log(currentVal);
                 if (!isNaN(currentVal) && currentVal > 0){
                     $('#id_form-0-quantity').val(currentVal - 1);
                 }
             })
-            $('.add1').click(function () {
+            $('.add1').on('click',function () {
                 let currentVal = parseInt($('#id_form-0-quantity').val());
                 console.log(currentVal);
                 if (!isNaN(currentVal)){

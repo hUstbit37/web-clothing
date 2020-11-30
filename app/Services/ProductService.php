@@ -9,6 +9,10 @@ class ProductService
 {
     const PRODUCT_PER_PAGE = 8;
 
+    public function findById($id)
+    {
+        return Product::find($id);
+    }
     public function findBySlug($slug)
     {
         return Product::where(['slug' => $slug])->first();
