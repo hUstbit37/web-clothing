@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Services\ProductService;
@@ -18,7 +19,10 @@ class CartController extends Controller
 
     public function index()
     {
-        return __METHOD__;
+        $products = Session::get('cart') ?? collect();
+        return view('frontend.carts.index', [
+            'products' => $products
+        ]);
     }
 
     public function store($id)
@@ -26,22 +30,17 @@ class CartController extends Controller
         try {
             $product = $this->productService->findById($id);
             $cart = Session::get('cart') ?? collect();
-            if (($cart->count()) > 0) {
-                $productInCart = $cart->where('id', $id)->first();
-                if ($productInCart == null){
-                    $product['quantity'] = 1;
-                } else{
-                    $productInCart['quantity'] += 1;
-                }
-
-            } else {
+            $productInCart = $cart->where('id', $id)->first();
+            if (($cart->count()) === 0 || $productInCart === null) {
                 $product['quantity'] = 1;
                 $cart->push($product);
+            } else {
+                $productInCart['quantity'] += 1;
             }
-            Session::flash('message', 'Đã thêm sản phẩm vào giỏ hàng');
             Session::put('cart', $cart);
+            Session::flash('message', 'Đã thêm sản phẩm vào giỏ hàng');
             return redirect()->back();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             report($e);
             abort(500);
         }
