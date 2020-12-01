@@ -19,6 +19,7 @@ class CartController extends Controller
 
     public function index()
     {
+
         $products = Session::get('cart') ?? collect();
         return view('frontend.carts.index', [
             'products' => $products
@@ -45,13 +46,23 @@ class CartController extends Controller
             abort(500);
         }
     }
-    public function update()
+    public function update(Request $request)
     {
-
+        $cart = Session::get('cart') ?? collect();
+        foreach ($request->quantity as $productId => $quantity){
+            $productInCart = $cart->where('id', $productId)->first();
+            $productInCart['quantity']= $quantity;
+        }
+        return redirect(route('cart.index'));
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-
+        $cart = Session::get('cart') ?? collect();
+       $products = $cart->reject(function ($product) use($id){
+            return $product->id == $id;
+        });
+       Session::put('cart', $products);
+       return redirect(route('cart.index'));
     }
 }

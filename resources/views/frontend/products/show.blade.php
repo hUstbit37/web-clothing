@@ -67,18 +67,19 @@
                             <label for="size-xxl">XXL</label>
                         </div>
                     </div>
-                    <div class="quantity">
+                    <div class="quantity" id="{{$product->id}}">
                         <button class="btn minus1">-</button>
-                        <input class="quantity" id="id_form-0-quantity"  name="form-0-quantity" value="1" type="number">
+                        <input id="quantity-{{$product->id}}" name="quantity" value="1" type="number">
                         <button class="btn add1">+</button>
                     </div>
                     <a href="{{ route('cart.store', ['id' => $product->id]) }}">
-                        <button id="add-order">Thêm vào giỏ hàng</button>
+                        <button class="button-hover" id="add-order">Thêm vào giỏ hàng</button>
                     </a>
                     @if(Session::has('message'))
-                    <div class="alert alert-success" style="background: #c8e2d6; padding: 5px; height: 40px; width: 60%; line-height: 30px;">
-                        {{ Session::get('message') }}
-                    </div>
+                        <div class="alert alert-success"
+                             style="background: #c8e2d6; padding: 5px; height: 40px; width: 60%; line-height: 30px;">
+                            {{ Session::get('message') }}
+                        </div>
                     @endif
                 </div>
             </div>
@@ -99,7 +100,7 @@
                     <div class="item">
                         <div class="image">
                             <a href="{{ url($product->slug).'/product' }}">
-                                <img src="{{ url('images/product-cover.jpg') }}" alt="{{ $product->name }}">
+                                <img src="{{ url('images/img-11.jpg') }}" alt="{{ $product->name }}">
                             </a>
                             <div class="function">
                                 <a href=""><i class="fas fa-heart"></i></a>
@@ -119,23 +120,5 @@
             </div>
         </div>
     </list-product>
-    <script>
-        $(document).ready(function () {
-            $('.minus1').on('click', function () {
-                let currentVal = parseInt($('#id_form-0-quantity').val());
-                console.log(currentVal);
-                if (!isNaN(currentVal) && currentVal > 0){
-                    $('#id_form-0-quantity').val(currentVal - 1);
-                }
-            })
-            $('.add1').on('click',function () {
-                let currentVal = parseInt($('#id_form-0-quantity').val());
-                console.log(currentVal);
-                if (!isNaN(currentVal)){
-                    $('#id_form-0-quantity').val(currentVal + 1);
-                }
-            })
-        })
-    </script>
 @endsection
 
