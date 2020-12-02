@@ -48,11 +48,5 @@
         <p>Copyright &COPY; 2020 U4RSTORE. All Rights Reserved</p>
     </div>
 </footer>
-<script>
-    $(document).ready(function () {
-        $('#info-btn').on('click', function () {
-            $('#info').toggle(400);
-        });
-    })
-</script>
+
 

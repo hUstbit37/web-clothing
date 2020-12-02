@@ -13,7 +13,6 @@
 {{--    <script src="{{ url('js/all.min.js') }}"></script>--}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-{{--    <link rel="stylesheet" href="{{ url('css/all.min.css') }}"/>--}}
     <link rel="stylesheet" href="{{ url('css/stylesheet.css') }}"/>
     <link rel="stylesheet" href="{{ url('css/jquery.fancybox.css') }}"/>
     <link rel="stylesheet" href="{{ url('css/style.css') }}">
@@ -29,5 +28,5 @@
 @include('frontend.parttions.header')
 
 @yield('main_content')
-
+<script src="{{ url('js/main.js') }}"></script>
 @include('frontend.parttions.footer')

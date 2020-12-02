@@ -13,7 +13,7 @@
                 @foreach($products as $product )
                 <div class="item">
                     <div class="image">
-                        <a href="{{ url($product->slug).'/product' }}"><img src="{{ url('images/product-cover.jpg') }}" alt=""></a>
+                        <a href="{{ url($product->slug).'/product' }}"><img src="{{ url('images/img-1.jpg') }}" alt=""></a>
                         <div class="function">
                             <a href=""><i class="fas fa-heart"></i></a>
                             <a href="{{ url($product->slug).'/product' }}"><i class="fas fa-eye"></i></a>
