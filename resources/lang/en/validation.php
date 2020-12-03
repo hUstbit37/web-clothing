@@ -130,9 +130,25 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'name' => [
+            'required' => 'Vui lòng nhập tên',
         ],
+        'password' => [
+            'required' => 'Vui lòng nhập mật khẩu',
+            'min' => 'Mật khẩu phải từ 8 ký tự trở lên',
+            'regex' => 'Mật khẩu phải bao gồm số và chữ cái',
+        ],
+        'email' => [
+            'required' => 'Vui lòng nhập email',
+            'email' => 'Email không đúng định dạng',
+            'unique' => "Email đã tồn tại",
+        ],
+        'phone' => [
+            'required' => 'Số điện thoại không được bỏ trống',
+            'numeric' => 'Số điện thoại phải là số',
+            'digits' => 'Số điện thoại có 10 số'
+        ],
+
     ],
 
     /*
