@@ -43,7 +43,9 @@ class UserController extends Controller
     {
         try {
             $input = $request->only(['name', 'email', 'phone', 'gender', 'address', 'password']);
-            return new UserResource($this->userRepository->save($input));
+            $user = $this->userRepository->findByEmail($input['email']);
+            $checkUser = !$user ? $this->userRepository->save($input) : $user;
+            return new UserResource($checkUser);
         } catch (\Exception $e) {
             return $this->responseException($e);
         }

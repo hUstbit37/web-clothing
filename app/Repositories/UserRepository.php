@@ -33,10 +33,18 @@ class UserRepository
     {
         return User::all();
     }
+
+    public function findByEmail($email)
+    {
+        return User::where(['email' => $email])->first();
+    }
+
     public function isVerify($email)
     {
-
-        //kiem tra xem email dang ky nay da verify hay chua
+        //kiem tra xem email đã đăng ký chưa hoặc đã đăng ký thì verify hay chưa
+        // Mail chưa đăng ký : false
+        // Mail đã đăng ký và verified: true
+        // Mail đã đăng ký nhưng not verify: false
         return User::where(['email' => $email])->whereNotNull('email_verified_at')->exists();
     }
 

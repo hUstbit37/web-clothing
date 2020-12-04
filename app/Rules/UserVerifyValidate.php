@@ -27,6 +27,7 @@ class UserVerifyValidate implements Rule
      */
     public function passes($attribute, $value)
     {
+
        return ! app(UserRepository::class)->isVerify( $this->input['email']);
     }
 
@@ -37,6 +38,6 @@ class UserVerifyValidate implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Email đã tồn tại';
     }
 }
