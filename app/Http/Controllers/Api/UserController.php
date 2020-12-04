@@ -50,7 +50,7 @@ class UserController extends Controller
             return $this->responseException($e);
         }
     }
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         try {
             $input = $request->only(['name', 'email', 'phone', 'gender', 'address', 'password']);

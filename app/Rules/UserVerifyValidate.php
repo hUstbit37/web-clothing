@@ -27,8 +27,11 @@ class UserVerifyValidate implements Rule
      */
     public function passes($attribute, $value)
     {
-
-       return ! app(UserRepository::class)->isVerify( $this->input['email']);
+        $userId = $this->input->route('user');
+        if(!$userId){
+            return ! app(UserRepository::class)->isVerify( $this->input['email']);
+        }
+        return ! app(UserRepository::class)->checkEmailUpdate( $this->input['email'], $userId);
     }
 
     /**
