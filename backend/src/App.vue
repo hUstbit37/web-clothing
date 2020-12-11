@@ -68,6 +68,7 @@ export default {
     color: #333;
     padding: 0 !important;
 }
+
 .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link, .el-breadcrumb__inner {
     color: #ffffff !important;
 }

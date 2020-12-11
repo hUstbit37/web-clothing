@@ -27,13 +27,13 @@
             </el-table-column>
             <el-table-column prop="slug" label="Slug">
             </el-table-column>
-            <el-table-column prop="parent_id" label="Danh mục cha">
+            <el-table-column prop="parent_id" label="Danh mục cha" width="150">
             </el-table-column>
-            <el-table-column prop="is_home" label="Hiển thị trang chủ">
+            <el-table-column prop="is_home" label="Hiển thị trang chủ" width="150">
             </el-table-column>
-            <el-table-column prop="product_count" label="Tổng số sản phẩm" :formatter="totalproduct">
+            <el-table-column prop="product_count" label="Tổng số sản phẩm" width="150" :formatter="totalproduct">
             </el-table-column>
-            <el-table-column prop="" label="Hành động">
+            <el-table-column prop="" label="Hành động" width="150">
                 <template slot-scope="scope">
                     <el-button
                         size="mini"
@@ -100,6 +100,11 @@ export default {
                         this.category.splice(index,1)
                     }
                 })
+                this.$axios.delete(`api/v1/category/${row.id}`).then((res) => {
+                    this.getData()
+                }).catch((err) => {
+                    console.log(err)
+                })
             })
 
         },
@@ -144,6 +149,7 @@ export default {
 
 .el-pagination {
     float: right;
+    padding: 5px;
 }
 
 </style>

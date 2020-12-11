@@ -3,7 +3,7 @@
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/category' }">category</el-breadcrumb-item>
-            <el-breadcrumb-item>create</el-breadcrumb-item>
+            <el-breadcrumb-item>{{ urlName }}</el-breadcrumb-item>
         </el-breadcrumb>
 
         <el-col :span="16">
@@ -11,7 +11,7 @@
                 <el-form-item label="Tên danh mục" prop="name">
                     <el-input v-model="category.name" @change="covertToSlug" @input="covertToSlug">
                     </el-input>
-                    <div class="el-form-item__error">{{errors.name}}</div>
+                    <div class="el-form-item__error">{{ errors.name }}</div>
                 </el-form-item>
                 <el-form-item label="Slug" prop="slug">
                     <el-input v-model="category.slug"></el-input>
@@ -59,15 +59,16 @@
 export default {
     data() {
         return {
+            urlName: 'create',
             category_id: null,
             errors: {
-                name:''
+                name: ''
             },
             category: {
                 'name': '',
                 'slug': '',
                 'parent_id': 0,
-                'is_home': false,
+                'is_home': 0,
                 'meta_title': '',
                 'meta_desc': '',
                 'meta_keyword': '',
@@ -79,51 +80,72 @@ export default {
                 ]
             },
 
-            categories: [
-                {
-                    id: 0,
-                    name: 'Root'
-                },
-                {
-                    id: 1,
-                    name: 'Thời trang nam'
-                }, {
-                    id: 2,
-                    name: 'Thời trang nữ'
-                }, {
-                    id: 3,
-                    name: 'Thời trang trẻ em'
-                }]
+            categories: []
         }
     },
     created() {
-      if (this.$router.currentRoute.params.id) {
-          this.category_id = this.$router.currentRoute.params.id
-          this.$axios.get(`api/v1/category/${this.category_id}`).then((res=>{
-              console.log(res.data)
-              this.category = res.data
-          }))
-      }
+        console.log('this router', this.$router.currentRoute)
+        this.getCategories()
+        if (this.$router.currentRoute.params.id) {
+            this.category_id = this.$router.currentRoute.params.id
+            this.urlName = 'edit'
+            this.$axios.get(`api/v1/category/${this.category_id}`).then((res => {
+                // console.log(res.data)
+                this.category = res.data
+                this.category.is_home = !!this.category.is_home
+
+            }))
+        }
+        this.categories.push({
+            id: 0,
+            name: 'Root'
+        })
 
     },
     methods: {
         storeOrUpdate(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    this.$axios.post('api/v1/category', this.category).then((res) => {
-                        if (res.data.error){
-                            this.errors.name =res.data.error.message.name[0]
-                        } else {
-                            this.$router.push('/category')
-                        }
-                    }).catch((error) => {
-                        console.log(error)
-                    })
+                    if (!this.category_id) {
+                        this.$axios.post('api/v1/category', this.category).then((res) => {
+                            if (res.data.error) {
+                                this.errors.name = res.data.error.message.name[0]
+                            } else {
+                                this.$router.push('/category')
+                            }
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                    } else {
+                        this.$axios.put(`api/v1/category/${this.category_id}`, this.category).then((res) => {
+                            if (res.data.error) {
+                                this.errors.name = res.data.error.message.name[0]
+                            } else {
+                                this.$router.push('/category')
+                            }
+                        }).catch((error) => {
+                            console.log(error)
+                        })
+                    }
+
                 } else {
                     console.log('error submit!!');
                     return false;
                 }
             });
+        },
+        getCategories() {
+            this.$axios.get('api/v1/category').then((res) => {
+                this.categories = res.data.dataAll
+                if (this.category_id){
+                    this.categories.forEach((category, index) => {
+                        if (category.id === parseInt(this.category_id) ){
+
+                            this.categories.splice(index, 1)
+                        }
+                    })
+                }
+            })
         },
         resetForm(formName) {
             this.$refs[formName].resetFields();
