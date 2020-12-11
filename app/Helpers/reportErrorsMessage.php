@@ -1,7 +1,7 @@
 
 <?php
 if (!function_exists('reportErrorsMessage')) {
-    function reportErrorsMessage($e)
+    function reportErrorsMessage($e): \Illuminate\Http\JsonResponse
     {
         return response()->json([
             'status' => false,

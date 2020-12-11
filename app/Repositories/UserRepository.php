@@ -17,7 +17,7 @@ class UserRepository
             [
                 'name' => $input['name'],
                 'email' => $input['email'],
-                'password' => encrypt($input['password']) ,
+                'password' => bcrypt($input['password']) ,
                 'phone' => $input['phone'],
                 'gender' => $input['gender'],
                 'address' => $input['address'] ?? null,

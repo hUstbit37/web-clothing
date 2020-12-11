@@ -27,9 +27,14 @@ class CategoryRepository
     {
         return Category::find($id);
     }
+
+    public function getAll()
+    {
+        return Category::all();
+    }
     public function paginate($limit = 6)
     {
-        return Category::paginate($limit);
+        return Category::with('products')->paginate($limit);
     }
 
     public function destroy(array $ids)

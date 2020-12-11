@@ -53,6 +53,6 @@ class ProductRequest extends FormRequest
                 'code' => Response::HTTP_UNPROCESSABLE_ENTITY,
                 'message' => $validator->errors()
             ]
-        ], Response::HTTP_UNPROCESSABLE_ENTITY));
+        ]));
     }
 }

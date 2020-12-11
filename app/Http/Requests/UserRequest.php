@@ -52,7 +52,7 @@ class UserRequest extends FormRequest
                 'code'      => Response::HTTP_UNPROCESSABLE_ENTITY,
                 'message'   => $validator->errors()
             ]
-        ], Response::HTTP_UNPROCESSABLE_ENTITY));
+        ]));
     }
     public function messages()
     {

@@ -38,12 +38,12 @@ class ProductRepository
         return $this->productModel->paginate($limit);
     }
 
-    public function destroy( array $ids)
+    public function destroy(array $ids)
     {
         foreach ($ids as $id) {
             Product::find($id)->categories()->detach();
         }
-        $result= $this->productModel->destroy($ids);
+        $result = $this->productModel->destroy($ids);
         return $result;
     }
 

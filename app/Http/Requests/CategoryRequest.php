@@ -44,11 +44,19 @@ class CategoryRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'erros' => [
+            'error' => [
                 'status' => false,
                 'code' => Response::HTTP_UNPROCESSABLE_ENTITY,
                 'message' => $validator->errors()
             ]
-        ], Response::HTTP_UNPROCESSABLE_ENTITY));
+        ]));
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên danh mục không để trống',
+            'name.unique' => 'Tên danh mục đã tồn tại'
+        ];
     }
 }
