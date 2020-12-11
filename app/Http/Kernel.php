@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'check.product.id' => \App\Http\Middleware\Backend\CheckProductIdMiddleware::class,
         'verify.token' => \App\Http\Middleware\Backend\VerifyTokenMiddleware::class,
+        'auth.jwt' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
     ];
 }
