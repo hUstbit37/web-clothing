@@ -34,6 +34,22 @@ class ProductController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        try {
+            $product = $this->productRepository->findById($id);
+            $category_id = $product->categories()->get();
+            return response()->json([
+                'status' => true,
+                'code' => 200,
+                'data' => $product,
+                'category_id' => $category_id
+            ]);
+        } catch (\Exception $e) {
+            return reportErrorsMessage($e);
+        }
+    }
+
     public function store(ProductRequest $request)
     {
         try {

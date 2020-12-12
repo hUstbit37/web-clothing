@@ -32,7 +32,7 @@ class CategoryRepository
     {
         return Category::all();
     }
-    public function paginate($limit = 6)
+    public function paginate($limit = 9)
     {
         return Category::with('products')->paginate($limit);
     }

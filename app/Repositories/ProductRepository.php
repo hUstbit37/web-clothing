@@ -33,7 +33,11 @@ class ProductRepository
         );
     }
 
-    public function getAll($limit = 8)
+    public function findById($id)
+    {
+        return $this->productModel->find($id);
+    }
+    public function getAll($limit = 80)
     {
         return $this->productModel->paginate($limit);
     }
