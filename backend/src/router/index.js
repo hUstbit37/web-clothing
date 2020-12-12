@@ -3,7 +3,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HelloWorld from "@/components/HelloWorld";
 import ProductList from "@/components/products/index";
-import CreateProduct from "@/components/products/create-product"
+import ProductForm from "@/components/products/form"
 import CategoryList from "@/components/categories/index"
 import CategoryForm from "@/components/categories/form"
 Vue.use(VueRouter);
@@ -39,7 +39,12 @@ const router = new VueRouter({
         {
             path: '/product/create',
             name: 'create-product',
-            component: CreateProduct
+            component: ProductForm
+        },
+        {
+            path: '/product/edit/:id',
+            name: 'edit-product',
+            component: ProductForm
         },
     ]
 });
