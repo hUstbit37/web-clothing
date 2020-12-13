@@ -80,7 +80,10 @@ export default {
                 ]
             },
 
-            categories: []
+            categories: [{
+                'id': 0,
+                'name': 'Root'
+            }]
         }
     },
     created() {
@@ -96,11 +99,6 @@ export default {
 
             }))
         }
-        this.categories.push({
-            id: 0,
-            name: 'Root'
-        })
-
     },
     methods: {
         storeOrUpdate(formName) {
@@ -112,6 +110,10 @@ export default {
                                 this.errors.name = res.data.error.message.name[0]
                             } else {
                                 this.$router.push('/category')
+                                this.$message({
+                                    message: 'Bạn đã thêm thành công danh mục mới.',
+                                    type: 'success'
+                                });
                             }
                         }).catch((error) => {
                             console.log(error)
@@ -122,12 +124,15 @@ export default {
                                 this.errors.name = res.data.error.message.name[0]
                             } else {
                                 this.$router.push('/category')
+                                this.$message({
+                                    message: 'Bạn đã cập nhật thành công danh mục.',
+                                    type: 'success'
+                                });
                             }
                         }).catch((error) => {
                             console.log(error)
                         })
                     }
-
                 } else {
                     console.log('error submit!!');
                     return false;
@@ -140,7 +145,6 @@ export default {
                 if (this.category_id){
                     this.categories.forEach((category, index) => {
                         if (category.id === parseInt(this.category_id) ){
-
                             this.categories.splice(index, 1)
                         }
                     })
