@@ -25,7 +25,7 @@ class ProductRepository
                 'slug' => $input['slug'],
                 'price' => $input['price'],
                 'discount' => $input['discount'] ?? 0,
-                'image' => $input['image'],
+                'image' => $input['image'] ?? 'imageProduct.jpg',
                 'meta_title' => $input['meta_title'],
                 'meta_desc' => $input['meta_desc'],
                 'meta_keyword' => $input['meta_keyword'],
@@ -37,9 +37,13 @@ class ProductRepository
     {
         return $this->productModel->find($id);
     }
-    public function getAll($limit = 80)
+    public function paginate($limit = 10)
     {
-        return $this->productModel->paginate($limit);
+        return $this->productModel->orderBy('id')->with('categories')->paginate($limit);
+    }
+    public function getAll()
+    {
+        return $this->productModel->get();
     }
 
     public function destroy(array $ids)

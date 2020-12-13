@@ -3,7 +3,7 @@
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/product' }">product</el-breadcrumb-item>
-            <el-breadcrumb-item>{{urlName}}</el-breadcrumb-item>
+            <el-breadcrumb-item>{{ urlName }}</el-breadcrumb-item>
         </el-breadcrumb>
 
         <el-col :span="16">
@@ -21,8 +21,8 @@
                 <el-form-item label="Discount">
                     <el-input v-model="product.discount" type="number" size="small"></el-input>
                 </el-form-item>
-                <el-form-item label="Danh mục sản phẩm" prop="category_id">
-                    <el-select v-model="product.category_id" multiple placeholder="Chọn danh mục">
+                <el-form-item label="Danh mục sản phẩm" prop="category_ids">
+                    <el-select v-model="product.category_ids" multiple placeholder="Chọn danh mục">
                         <el-option
                             v-for="category in categories"
                             :key="category.id"
@@ -80,7 +80,7 @@ export default {
                 'slug': '',
                 'price': 0,
                 'discount': 0,
-                'category_id': [1,2],
+                'category_ids': [],
                 'meta_title': '',
                 'meta_desc': '',
                 'meta_keyword': '',
@@ -93,27 +93,20 @@ export default {
                 price: [
                     {required: true, message: 'Vui lòng nhập giá sản phẩm', trigger: 'blur'},
                 ],
-                category_id: [
+                category_ids: [
                     {required: true, message: 'Vui lòng chọn danh mục sản phẩm', trigger: 'blur'},
                 ]
             },
-
             categories: []
         }
     },
     created() {
-        if (this.$router.currentRoute.params.id) {
-            let product_id = this.$router.currentRoute.params.id
+        this.getCategories()
+        if (this.$route.params.id) {
+            let product_id = this.$route.params.id
             this.urlName = 'edit'
             this.$axios.get(`api/v1/product/${product_id}`).then((res => {
-                console.log(res.data)
                 this.product = res.data.data
-                // this.product.category_id= res.data.category_id
-                res.data.category_id.forEach(item => {
-                    console.log(item)
-                    // this.product.category_id.push(item)
-                })
-
             }))
         }
     },
@@ -122,11 +115,52 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     console.log(this.product)
+                    this.product.id ? this.update() : this.store()
                 } else {
                     console.log('error submit!!');
                     return false;
                 }
             });
+        },
+        store() {
+            this.$axios.post('api/v1/product', this.product).then((res) => {
+                if (res.data.error) {
+                    this.errors.name = res.data.error.message.name[0]
+                } else {
+                    this.$router.push('/product')
+                    this.$message({
+                        message: 'Bạn đã thêm thành công sản phẩm mới.',
+                        type: 'success'
+                    });
+                }
+            }).catch((error) => {
+                console.log(error)
+                this.$alert(error.data.message, 'error', {
+                    confirmButtonText: 'OK',
+                    type: 'warning',
+                    center: true
+                })
+            })
+        },
+        update() {
+            this.$axios.put(`api/v1/product/${this.product.id}`, this.product).then((res) => {
+                if (res.data.error) {
+                    this.errors.name = res.data.error.message.name[0]
+                } else {
+                    this.$router.push('/product')
+                    this.$message({
+                        message: 'Bạn đã cập nhật thành công sản phẩm.',
+                        type: 'success'
+                    });
+                }
+            }).catch((error) => {
+                console.log(error)
+            })
+        },
+        getCategories() {
+            this.$axios.get('api/v1/category').then((res) => {
+                this.categories = res.data.dataAll
+            })
         },
         resetForm(formName) {
             this.$refs[formName].resetFields();

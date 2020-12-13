@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
-use App\Models\Category;
 use App\Repositories\ProductRepository;
 
 class ProductService
@@ -30,7 +30,7 @@ class ProductService
             }
             DB::commit();
             return $product;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             return reportErrorsMessage($e);
         }
