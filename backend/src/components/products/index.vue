@@ -18,9 +18,9 @@
             :data="products"
             border
             style="width: 100%">
-            <el-table-column type="selection" width="55">
+            <el-table-column type="selection" width="40" align="center">
             </el-table-column>
-            <el-table-column type="index" width="40" label="#">
+            <el-table-column align="center" type="index" min-width="45" label="#" :index="customIndex">
             </el-table-column>
             <el-table-column sortable prop="name" label="Tên sản phẩm" width="180">
             </el-table-column>
@@ -49,12 +49,11 @@
                     </el-button>
                 </template>
             </el-table-column>
-
         </el-table>
         <el-pagination
             background
-            layout="prev, pager, next"
-            :current-page="currentPage"
+            layout="total,prev, pager, next"
+            :current-page.sync="currentPage"
             @current-change="handleCurrentChange"
             :page-size="pageSize"
             :total="total">
@@ -69,9 +68,9 @@ export default {
         return {
             loading: false,
             products: [],
-            page: 1,
-            pageSize: 1,
-            total: 1,
+            page: null,
+            pageSize: null,
+            total: null,
             currentPage: 1,
         }
     },
@@ -79,10 +78,12 @@ export default {
         this.getData()
     },
     methods: {
+        customIndex(index) {
+            return this.pageSize * (this.currentPage - 1)  + 1 + index;
+        },
         renderCategoryName(row) {
             let names = ''
             row.categories.forEach(item => {
-                console.log('item', item)
                 names += item.name + ' | '
             })
             return names.trim().slice(0, -1)
@@ -126,11 +127,11 @@ export default {
         getData() {
             this.loading = true
             this.$axios.get(`api/v1/product?page=${this.currentPage}`).then((res) => {
+                console.log(res.data.data)
                 this.pageSize = res.data.data.per_page
                 this.total = res.data.data.total;
                 this.products = res.data.data.data
                 this.loading = false
-                console.log('products', this.products)
             }).catch((error) => {
                 console.log(error)
                 this.loading = false
