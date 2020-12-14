@@ -8,7 +8,8 @@
             </span>
             <el-dropdown style="position: absolute; right: 50px; top: 10px;">
                 <span class="el-dropdown-link">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+                    <el-avatar
+                        src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80"></el-avatar>
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item disabled>Hello Đức</el-dropdown-item>
@@ -21,10 +22,14 @@
                 <el-menu
                     class="el-menu-vertical-demo"
                     :router="true"
-                    default-active="$route.path"
+                    :default-active="$route.name"
                     background-color="#545c64"
                     text-color="#FFF"
-                    active-text-color="#ffd04b">
+                    active-text-color="#40c9c6">
+                    <el-menu-item index="dashboard" :route="{ name: 'dashboard'}">
+                        <i class="el-icon-s-marketing"></i>
+                        <span>Dashboard</span>
+                    </el-menu-item>
                     <el-menu-item index="category" :route="{ name: 'category'}">
                         <i class="el-icon-menu"></i>
                         <span>Quản lý danh mục</span>
@@ -34,7 +39,7 @@
                         <span>Quản lý sản phẩm</span>
                     </el-menu-item>
                     <el-menu-item index="order" :route="{ name: 'order'}">
-                        <i class="el-icon-s-order"></i>
+                        <i class="el-icon-shopping-cart-full"></i>
                         <span>Quản lý đơn hàng</span>
                     </el-menu-item>
                     <el-menu-item index="user" :route="{ name: 'user'}">
@@ -53,7 +58,12 @@
 <script>
 export default {
     name: "app",
-
+    created() {
+        let route = this.$route
+        let router = this.$router
+        console.log('route', route)
+        console.log('router', router)
+    }
 };
 </script>
 
@@ -63,17 +73,32 @@ export default {
     padding: 0;
 }
 
-.el-header {
-    background-color: #B3C0D1;
-    color: #333;
+#app {
     position: relative;
-    /*text-align: center;*/
-    /*line-height: 60px;*/
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+.el-header {
+    background-color: #304156;
+    color: #FFFFFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5999;
 }
 
 .el-aside {
-    background-color: #545c64;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    background-color: #304156;
     border-right: 1px solid #E9EEF3;
+    height: 100%;
+}
+
+.el-aside ul > li {
+    background-color: #304156 !important;
 }
 
 .el-aside ul li:hover {
@@ -81,14 +106,30 @@ export default {
     transition: 0.8s;
 }
 
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #40c9c6 !important;
+}
+
 .el-menu {
     border-right: none !important;
 }
 
+.el-menu-item.is-active {
+    padding-left: 25px !important;
+    font-weight: 600;
+}
+
 .el-main {
+    margin-top: 60px;
+    margin-left: 200px;
     background-color: #E9EEF3;
     color: #333;
     padding: 0 !important;
+}
+
+.el-breadcrumb {
+    background-color: #40c9c6;
+    padding: 15px;
 }
 
 .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link, .el-breadcrumb__inner {
@@ -98,5 +139,12 @@ export default {
 .el-pagination {
     float: right;
     padding: 10px !important;
+}
+
+.el-icon-s-marketing, .el-icon-menu, .el-icon-s-goods,
+.el-icon-shopping-cart-full, .el-icon-user-solid {
+    color: #40c9c6 !important;
+    border: 1px solid #40c9c6;
+    border-radius: 5px;
 }
 </style>

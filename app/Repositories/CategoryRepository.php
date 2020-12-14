@@ -34,7 +34,7 @@ class CategoryRepository
     }
     public function paginate($limit = 9)
     {
-        return Category::with('products')->paginate($limit);
+        return Category::with('products')->with('children')->paginate($limit);
     }
 
     public function destroy(array $ids)

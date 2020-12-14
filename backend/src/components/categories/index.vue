@@ -14,20 +14,21 @@
 
         <el-table
             @selection-change="handleSelectionChange"
-            :default-sort = "{prop: 'name', order: 'descending'}"
+            :default-sort="{prop: 'name', order: 'descending'}"
             v-loading="loading"
             :data="category"
+            height="500"
             border
             style="width: 100%">
-            <el-table-column
-                type="selection"
-                width="55">
+            <el-table-column type="selection" width="45">
+            </el-table-column>
+            <el-table-column align="center" type="index" min-width="45" label="#" :index="customIndex">
             </el-table-column>
             <el-table-column sortable prop="name" label="Tên danh mục" width="180">
             </el-table-column>
             <el-table-column prop="slug" label="Slug">
             </el-table-column>
-            <el-table-column prop="parent_id" label="Danh mục cha" width="150">
+            <el-table-column prop="parent_id" label="Danh mục cha" width="150" :formatter="renderCategoryNameParent">
             </el-table-column>
             <el-table-column prop="is_home" label="Hiển thị trang chủ" width="150">
             </el-table-column>
@@ -37,18 +38,20 @@
                 <template slot-scope="scope">
                     <el-button
                         size="mini"
-                        @click="handleEdit(scope.$index, scope.row)">Sửa</el-button>
+                        @click="handleEdit(scope.$index, scope.row)">Sửa
+                    </el-button>
                     <el-button
                         size="mini"
                         type="danger"
-                        @click="handleDelete(scope.$index, scope.row)">Xóa</el-button>
+                        @click="handleDelete(scope.$index, scope.row)">Xóa
+                    </el-button>
                 </template>
             </el-table-column>
 
         </el-table>
         <el-pagination
             background
-            layout="prev, pager, next"
+            layout="total ,prev, pager, next, jumper"
             :current-page="currentPage"
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
@@ -72,12 +75,24 @@ export default {
         }
     },
     created() {
-
         this.getData()
     },
 
     methods: {
-        totalproduct(row){
+        renderCategoryNameParent(row) {
+            let names = ''
+            if (row.children.length > 0) {
+                row.children.forEach(item => {
+                    names += item.name + ' | '
+                })
+                return names.trim().slice(0, -1)
+            }
+            return 'Root'
+        },
+        customIndex(index) {
+            return this.pageSize * (this.currentPage - 1) + 1 + index;
+        },
+        totalproduct(row) {
             return row.products.length
         },
         handleSelectionChange(val) {
@@ -86,7 +101,7 @@ export default {
         },
         handleEdit(index, row) {
             console.log(index, row);
-            this.$router.push({ path: `/category/edit/${row.id}`})
+            this.$router.push({path: `/category/edit/${row.id}`})
         },
         handleDelete(index, row) {
             console.log(index, row);
@@ -94,10 +109,10 @@ export default {
                 confirmButtonText: 'OK',
                 cancelButtonText: 'Cancel',
                 type: 'warning'
-            }). then(() => {
-                this.category.forEach(item =>{
-                    if (item.id === row.id){
-                        this.category.splice(index,1)
+            }).then(() => {
+                this.category.forEach(item => {
+                    if (item.id === row.id) {
+                        this.category.splice(index, 1)
                     }
                 })
                 this.$axios.delete(`api/v1/category/${row.id}`).then((res) => {
@@ -106,7 +121,6 @@ export default {
                     console.log(err)
                 })
             })
-
         },
         showFormCreate() {
             this.$router.push('/category/create');
@@ -133,7 +147,6 @@ export default {
                 this.loading = false
             })
         },
-
     }
 }
 </script>

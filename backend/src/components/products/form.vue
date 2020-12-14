@@ -100,7 +100,14 @@ export default {
             categories: []
         }
     },
+    watch: {
+      $route(to, from){
+          console.log('to',this.urlName)
+          this.urlName = to
+      }
+    },
     created() {
+        console.log(this.$route.name    )
         this.getCategories()
         if (this.$route.params.id) {
             let product_id = this.$route.params.id

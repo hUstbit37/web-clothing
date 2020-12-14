@@ -16,9 +16,10 @@
             @selection-change="handleSelectionChange"
             v-loading="loading"
             :data="products"
-            border
+            height="500"
+            fit
             style="width: 100%">
-            <el-table-column type="selection" width="40" align="center">
+            <el-table-column type="selection" width="45" align="center">
             </el-table-column>
             <el-table-column align="center" type="index" min-width="45" label="#" :index="customIndex">
             </el-table-column>
@@ -52,7 +53,7 @@
         </el-table>
         <el-pagination
             background
-            layout="total,prev, pager, next"
+            layout="total,prev, pager, next, jumper"
             :current-page.sync="currentPage"
             @current-change="handleCurrentChange"
             :page-size="pageSize"
@@ -142,7 +143,9 @@ export default {
 </script>
 
 <style scoped>
+
 .el-button--primary.is-plain {
     float: right;
 }
+
 </style>

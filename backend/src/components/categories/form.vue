@@ -76,7 +76,7 @@ export default {
             rules: {
                 name: [
                     {required: true, message: 'Tên danh mục không để trống', trigger: 'blur'},
-                    {min: 5, max: 255, message: 'Độ dài không hợp lệ', trigger: 'blur'}
+                    {min: 3, max: 255, message: 'Độ dài không hợp lệ', trigger: 'blur'}
                 ]
             },
 

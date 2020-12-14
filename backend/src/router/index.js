@@ -1,11 +1,12 @@
 /* eslint-disable */
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HelloWorld from "@/components/HelloWorld";
+import Dashboard from "@/components/Dashboard";
 import ProductList from "@/components/products/index";
 import ProductForm from "@/components/products/form"
 import CategoryList from "@/components/categories/index"
 import CategoryForm from "@/components/categories/form"
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -13,13 +14,13 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
-            name: 'HelloWorld',
-            component: HelloWorld
+            name: 'dashboard',
+            component: Dashboard
         },
         {
             path: '/category',
             name: 'category',
-            component: CategoryList
+            component: CategoryList,
         },
         {
             path: '/category/create',
