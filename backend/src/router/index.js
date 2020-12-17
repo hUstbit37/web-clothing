@@ -6,6 +6,7 @@ import ProductList from "@/components/products/index";
 import ProductForm from "@/components/products/form"
 import CategoryList from "@/components/categories/index"
 import CategoryForm from "@/components/categories/form"
+import OrderList from "@/components/orders/index"
 
 Vue.use(VueRouter);
 
@@ -46,6 +47,11 @@ const router = new VueRouter({
             path: '/product/edit/:id',
             name: 'edit-product',
             component: ProductForm
+        },
+        {
+            path: '/order',
+            name: 'order',
+            component: OrderList,
         },
     ]
 });
