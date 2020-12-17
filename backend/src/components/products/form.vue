@@ -7,7 +7,7 @@
         </el-breadcrumb>
 
         <el-col :span="16">
-            <el-form :model="product" :rules="rules" ref="formProduct" label-width="150px">
+            <el-form :model="product" :rules="rules" ref="formProduct" label-width="200px">
                 <el-form-item label="Tên sản phẩm" prop="name">
                     <el-input v-model="product.name" @change="covertToSlug" @input="covertToSlug" size="small">
                     </el-input>
@@ -34,10 +34,13 @@
                 <el-form-item label="Tải ảnh lên">
                     <el-upload
                         class="upload-demo"
-                        action="https://jsonplaceholder.typicode.com/posts/"
+                        action=""
+                        :auto-upload="false"
                         :on-preview="handlePreview"
                         :on-remove="handleRemove"
                         list-type="picture"
+                        :on-change="handleUploadChange"
+                        :before-upload="beforeUpload"
                     >
                         <el-button size="small" type="primary">Click to upload</el-button>
                         <div slot="tip" class="el-upload__tip">
@@ -97,7 +100,9 @@ export default {
                     {required: true, message: 'Vui lòng chọn danh mục sản phẩm', trigger: 'blur'},
                 ]
             },
-            categories: []
+            categories: [],
+            imageList: [],
+            image: ''
         }
     },
     watch: {
@@ -118,11 +123,30 @@ export default {
         }
     },
     methods: {
+        handleUploadChange(image, imageList){
+           this.imageList = imageList
+            this.image = image
+        },
+        beforeUpload(file){
+          console.log('file', file)
+        },
         storeOrUpdate(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    console.log(this.product)
-                    this.product.id ? this.update() : this.store()
+                    let formData = new FormData
+                    this.imageList.forEach((image) => {
+                        formData.append('image[]', image.raw)
+                    })
+                   for(let key in this.product) {
+                       formData.append(key, this.product[key])
+                   }
+                    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+                    this.$axios.post('api/v1/product', formData, config).then(res => {
+                        console.log(res.data)
+                    }).catch(e => {
+                        console.log(e)
+                    })
+                    // this.product.id ? this.update() : this.store()
                 } else {
                     console.log('error submit!!');
                     return false;

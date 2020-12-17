@@ -8,6 +8,8 @@ use Exception;
 
 use App\Repositories\ProductRepository;
 use App\Services\ProductService;
+use Illuminate\Http\Request;
+
 class ProductController extends Controller
 {
     protected $productRepository;
@@ -49,9 +51,18 @@ class ProductController extends Controller
         }
     }
 
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
         try {
+            if ($request ->hasFile('image')) {
+                $images = $request->file('image');
+                foreach ($images as $item) {
+                    $imageName = $item->getClientOriginalName() ;
+                    $destinationPath = public_path().'/images/upload' ;
+                    $item->move($destinationPath,$imageName);
+                }
+            }
+
             $input = $request->only(['name', 'slug', 'price', 'discount', 'image', 'meta_title', 'meta_desc', 'meta_keyword']);
             $product = $this->productService->saveProduct($input, $request->category_ids);
             return response()->json([
