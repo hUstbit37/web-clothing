@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Backend\CorsMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -21,6 +22,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+
     ];
 
     /**
@@ -66,5 +68,6 @@ class Kernel extends HttpKernel
         'check.product.id' => \App\Http\Middleware\Backend\CheckProductIdMiddleware::class,
         'verify.token' => \App\Http\Middleware\Backend\VerifyTokenMiddleware::class,
         'auth.jwt' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
+        'cors' => CorsMiddleware::class,
     ];
 }
