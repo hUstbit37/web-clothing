@@ -1,53 +1,8 @@
 <template>
     <div id="app">
-        <el-header>
-            <span
-                style="position: absolute; top: 20px; font-size: 20px; cursor: pointer">
-                <i class="el-icon-s-home"></i>
-                Trang quản trị
-            </span>
-            <el-dropdown style="position: absolute; right: 50px; top: 10px;">
-                <span class="el-dropdown-link">
-                    <el-avatar
-                        src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80"></el-avatar>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item disabled>Hello Đức</el-dropdown-item>
-                    <el-dropdown-item>Log Out</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
-        </el-header>
+        <app-header/>
         <el-container>
-            <el-aside width="200px">
-                <el-menu
-                    class="el-menu-vertical-demo"
-                    :router="true"
-                    :default-active="$route.name"
-                    background-color="#545c64"
-                    text-color="#FFF"
-                    active-text-color="#40c9c6">
-                    <el-menu-item index="dashboard" :route="{ name: 'dashboard'}">
-                        <i class="el-icon-s-marketing"></i>
-                        <span>Dashboard</span>
-                    </el-menu-item>
-                    <el-menu-item index="category" :route="{ name: 'category'}">
-                        <i class="el-icon-menu"></i>
-                        <span>Quản lý danh mục</span>
-                    </el-menu-item>
-                    <el-menu-item index="product" :route="{ name: 'product'}">
-                        <i class="el-icon-s-goods"></i>
-                        <span>Quản lý sản phẩm</span>
-                    </el-menu-item>
-                    <el-menu-item index="order" :route="{ name: 'order'}">
-                        <i class="el-icon-shopping-cart-full"></i>
-                        <span>Quản lý đơn hàng</span>
-                    </el-menu-item>
-                    <el-menu-item index="user" :route="{ name: 'user'}">
-                        <i class="el-icon-user-solid"></i>
-                        <span>Quản lý thành viên</span>
-                    </el-menu-item>
-                </el-menu>
-            </el-aside>
+            <app-aside/>
             <el-main>
                 <router-view/>
             </el-main>
@@ -56,14 +11,17 @@
 </template>
 
 <script>
+
+import AppHeader from "@/components/layout/header";
+import AppAside from "@/components/layout/aside";
+
 export default {
     name: "app",
-    created() {
-        let route = this.$route
-        let router = this.$router
-        console.log('route', route)
-        console.log('router', router)
+    components: {
+        AppAside,
+        AppHeader,
     }
+
 };
 </script>
 

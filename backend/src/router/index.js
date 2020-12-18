@@ -7,6 +7,7 @@ import ProductForm from "@/components/products/form"
 import CategoryList from "@/components/categories/index"
 import CategoryForm from "@/components/categories/form"
 import OrderList from "@/components/orders/index"
+import LoginForm from "@/components/auth/login"
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,11 @@ const router = new VueRouter({
             path: '/order',
             name: 'order',
             component: OrderList,
+        },
+        {
+            path: '/login',
+            name: 'auth.login',
+            component: LoginForm,
         },
     ]
 });
