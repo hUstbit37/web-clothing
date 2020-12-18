@@ -9,6 +9,7 @@
         <div class="container">
             <a href="/" title="Trang chủ">Trang chủ</a> /
             <a href="">{{ $category->name }}</a>
+            <div class="titlePrimary-line"></div>
         </div>
     </div>
 	@include('frontend.products._list', [

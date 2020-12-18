@@ -10,9 +10,7 @@
     <div class="titlePrimary">
         Giỏ hàng của bạn
         <p>Có {{ countCart('cart') }} sản phẩm trong giỏ hàng</p>
-        <p style="width: 100px; border-bottom: 1px solid #111111">
-
-        </p>
+        <div class="titlePrimary-line"></div>
     </div>
     <div class="container">
         <div class="cart-content">

@@ -2,6 +2,7 @@
     <div class="container">
         <div class="titlePrimary">
             {{ $categoryName ?? 'Top New Products' }}
+            <div class="titlePrimary-line"></div>
         </div>
         @php
         // Vì _list.blade.php dùng chung giữa home.index với categorie.index, lúc đầu khi mới vào trang home, biến

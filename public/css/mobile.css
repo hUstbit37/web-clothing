@@ -1,4 +1,4 @@
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 479px) {
     .container {
         width: 92%
     }
@@ -7,6 +7,9 @@
     }
     .row-wrap {
         flex-wrap: wrap
+    }
+    .titlePrimary {
+        font-size: 30px;
     }
     line-header .right {
         width: 100%;
@@ -150,8 +153,9 @@
     footer .info-show button{
         border: none;
         /*padding: 15px;*/
-        color: #FFFFFF;
-        font-size: 20px;
+        color: #111111;
+        font-size: 18px;
         background: inherit;
+        cursor: pointer;
     }
 }

@@ -54,22 +54,37 @@ p {
 }
 
 .titlePrimary {
+    /*display: inline-block;*/
+    /*margin: 0 auto;*/
     margin-top: 30px;
-    text-align: center;
+    /*text-align: center;*/
     font-weight: 600;
     font-size: 35px;
-    text-transform: capitalize
+    text-transform: capitalize;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .titlePrimary p {
-    margin: 10px 0 20px 0;
+    display: block;
+    margin-top: 10px;
 }
-#header-full{
+
+.titlePrimary .titlePrimary-line {
+    width: 100px;
+    border-bottom: 2px solid #111111;
+    margin-top: 10px;
+}
+
+#header-full {
     /*position:fixed;*/
     /*top:0;*/
     /*z-index: 9999;*/
     /*width: 100%;*/
 }
+
 line-header {
     display: block;
     width: 100%;
@@ -170,10 +185,12 @@ header .subFunctional a {
 header .subFunctional a:hover {
     color: #ff6f61
 }
-header .fa-shopping-cart{
+
+header .fa-shopping-cart {
     position: relative;
 }
-header .count-cart{
+
+header .count-cart {
     color: #ffffff;
     background: green;
     border-radius: 35%;
@@ -204,10 +221,12 @@ category {
     display: block;
     width: 100%
 }
-category .row{
+
+category .row {
     display: flex;
     flex-wrap: wrap;
 }
+
 category .item {
     width: 33.33%;
     height: 50vh;
@@ -239,7 +258,8 @@ category .item .info {
     text-align: center;
 
 }
-category .item:hover{
+
+category .item:hover {
     /*transform: scale(1.15, 1.15);*/
 }
 
@@ -276,10 +296,12 @@ policy .container {
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 15px
 }
-policy .container .row{
+
+policy .container .row {
     display: flex;
     flex-wrap: wrap;
 }
+
 policy .item {
     display: flex;
     justify-content: space-between;
@@ -596,13 +618,16 @@ news .list-news .item .right div {
 news .list-news .item .right div span {
     font-style: italic
 }
-.cart-content{
+
+.cart-content {
     width: 100%;
 }
-.cart-product{
-width: 100%;
+
+.cart-product {
+    width: 100%;
 }
-.cart-product .cart-item{
+
+.cart-product .cart-item {
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -610,53 +635,65 @@ width: 100%;
     border-bottom: 1px solid #ededed;
     padding: 15px 0;
 }
-.cart-product .cart-item .cart-image img{
+
+.cart-product .cart-item .cart-image img {
     width: 135px;
     /*height: 135px;*/
 }
-.cart-product .cart-item .cart-detail{
+
+.cart-product .cart-item .cart-detail {
     display: flex;
     flex-direction: column;
     margin-left: 20px;
     width: 80%;
 }
-.cart-product .cart-item .cart-detail span{
+
+.cart-product .cart-item .cart-detail span {
     padding-bottom: 15px;
 }
-.cart-product .cart-item .cart-detail span:first-child{
+
+.cart-product .cart-item .cart-detail span:first-child {
     font-weight: 600;
     font-size: 16px;
 }
-.cart-product .cart-item .cart-detail span:nth-child(2){
+
+.cart-product .cart-item .cart-detail span:nth-child(2) {
     font-weight: 500;
 }
-.cart-product .cart-item-control{
+
+.cart-product .cart-item-control {
     width: 10%;
     text-align: right;
     position: relative;
 }
-.cart-product .cart-item-control i{
+
+.cart-product .cart-item-control i {
     font-size: 30px;
     /*font-weight: 600 !important;*/
 }
-.cart-product .cart-item-control .cart-money{
+
+.cart-product .cart-item-control .cart-money {
     position: absolute;
     bottom: 0;
     right: 0;
     font-size: 16px;
 }
-.cart-total-money{
+
+.cart-total-money {
     /*width: 30%;*/
     text-align: right;
     padding-top: 15px;
 }
-.cart-total-money strong{
+
+.cart-total-money strong {
     font-size: 35px;
 }
-.cart-control{
+
+.cart-control {
     text-align: right !important;
 }
-.cart-control a button{
+
+.cart-control a button {
     width: 20%;
 }
 
@@ -750,7 +787,8 @@ footer .copyright {
     line-height: 50px;
     text-align: center;
 }
-footer .info-show{
+
+footer .info-show {
     /*background: #e52c25;*/
     display: none;
     margin: 15px;
@@ -886,7 +924,7 @@ footer .info-show{
 
 .button-hover {
     /*display: block;*/
-    background: #9225f0;
+    background: #ff6f61;
     font-family: inherit;
     font-weight: 600;
     color: #111111;
