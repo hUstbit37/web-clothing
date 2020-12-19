@@ -8,6 +8,7 @@ import CategoryList from "@/components/categories/index"
 import CategoryForm from "@/components/categories/form"
 import OrderList from "@/components/orders/index"
 import LoginForm from "@/components/auth/login"
+import {authService} from "@/services/auth";
 
 Vue.use(VueRouter);
 
@@ -17,7 +18,10 @@ const router = new VueRouter({
         {
             path: '/',
             name: 'dashboard',
-            component: Dashboard
+            component: Dashboard,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/category',
@@ -61,4 +65,25 @@ const router = new VueRouter({
         },
     ]
 });
+// const originalPush = VueRouter.prototype.push
+// VueRouter.prototype.push = function push (location, onResolve, onReject) {
+//     if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+//     return originalPush.call(this, location).catch(err => err)
+// }
+router.beforeEach((to, from, next) => {
+
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!authService.isLoggedIn()) {
+            next({
+                path: '/login',
+                query: { redirect: to.fullPath }
+            })
+        } else {
+            next()
+        }
+    } else {
+        next() // make sure to always call next()!
+    }
+})
+
 export default router;

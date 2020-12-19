@@ -7,12 +7,13 @@
                 <span class="login-social-text">Đăng nhập với Google</span>
             </el-button>
             <div class="login-or"><span>Hoặc</span></div>
-            <el-form label-position="left" ref="loginForm" :model="user" :rules="rules">
+            <el-form autocomplete="on" label-position="left" ref="loginForm" :model="user" :rules="rules">
                 <el-form-item label="Email" prop="email">
                     <el-input class="login-input" v-model="user.email" placeholder="Eg: johndoe@gmail.com"></el-input>
                 </el-form-item>
                 <el-form-item label="Mật khẩu" prop="password">
-                    <el-input show-password type="password" class="login-input" v-model="user.password"></el-input>
+                    <el-input show-password type="password" class="login-input" v-model="user.password"
+                              placeholder="Eg: *******"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button class="login-submit" type="primary" @click="login('loginForm')" plain>Đăng nhập
@@ -28,6 +29,8 @@
 </template>
 
 <script>
+import {authService} from "@/services/auth";
+
 export default {
     name: 'LoginComponent',
     props: {},
@@ -51,14 +54,9 @@ export default {
         login(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    this.$axios.post('api/v1/login', this.user).then((res) => {
-                        if (res.status === 200 && res.data.access_token) {
-                            localStorage.setItem('user-token', res.data.access_token)
-                            this.$router.push('/category')
-                        }
-                    }).catch((err) => {
-                        console.log(err)
-                    })
+                    authService.login(this.user.email, this.user.password)
+                    this.$router.push('/')
+
                 }
             })
         }
@@ -76,11 +74,11 @@ export default {
 }
 
 .login-container {
-    background-color: #fff;
+    background-color: #E9EEF3;
     padding: 55px 45px;
     text-align: center;
     width: 400px;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     /*margin-top: 15px;*/
 }
 
@@ -151,7 +149,7 @@ export default {
 }
 
 .login-or span {
-    background-color: #FFFFFF;
+    background-color: #E9EEF3;
     padding: 0 10px;
     position: relative;
     z-index: 2;
@@ -162,7 +160,7 @@ export default {
 }
 
 .login-submit {
-    background-color: rgb(48 65 86);
+    background-color: rgb(48 65 86) !important;
     width: 100%;
     border-radius: 15px;
     border: 0;

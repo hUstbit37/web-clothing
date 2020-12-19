@@ -20,14 +20,9 @@ class LoginController extends Controller
     public function login(Request $request): JsonResponse
     {
         $input = $request->only('email', 'password');
-//        $token = JWTAuth::attempt(['email' => $input['email'], 'password' => $input['password']]);
-//        return response()->json([
-//            'a' => $token
-//        ]);
-        if ( $token = $this->guard() -> attempt($input))
-        {
+        if ($token = $this->guard()->attempt($input)) {
             return response()->json([
-                'access_token' => $token,
+                'token' => $token,
                 'token_type' => 'bearer',
                 'expires_in' => $this->guard()->factory()->getTTL() * 60
             ]);

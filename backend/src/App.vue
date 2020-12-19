@@ -1,9 +1,9 @@
 <template>
     <div id="app">
-        <app-header/>
+        <app-header :isLoggedIn="isloggedIn"/>
         <el-container>
-            <app-aside/>
-            <el-main>
+            <app-aside v-if="isloggedIn"/>
+            <el-main :style="{ marginLeft: marginLeftNotLogin }">
                 <router-view/>
             </el-main>
         </el-container>
@@ -14,9 +14,20 @@
 
 import AppHeader from "@/components/layout/header";
 import AppAside from "@/components/layout/aside";
+import {authService} from "@/services/auth";
 
 export default {
     name: "app",
+    data() {
+        return {
+            isloggedIn: null,
+            marginLeftNotLogin: null
+        }
+    },
+
+    mounted() {
+        this.isloggedIn = authService.isLoggedIn()
+    },
     components: {
         AppAside,
         AppHeader,
@@ -33,54 +44,13 @@ export default {
 
 #app {
     position: relative;
-    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-}
-
-.el-header {
-    background-color: #304156;
-    color: #FFFFFF;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 5999;
-}
-
-.el-aside {
-    position: fixed;
-    left: 0;
-    top: 60px;
-    background-color: #304156;
-    border-right: 1px solid #E9EEF3;
-    height: 100%;
-}
-
-.el-aside ul > li {
-    background-color: #304156 !important;
-}
-
-.el-aside ul li:hover {
-    padding-left: 25px !important;
-    transition: 0.8s;
-}
-
-.el-pagination.is-background .el-pager li:not(.disabled).active {
-    background-color: #40c9c6 !important;
-}
-
-.el-menu {
-    border-right: none !important;
-}
-
-.el-menu-item.is-active {
-    padding-left: 25px !important;
-    font-weight: 600;
+    font-family: "Popines", sans-serif;
 }
 
 .el-main {
     margin-top: 60px;
     margin-left: 200px;
-    background-color: #E9EEF3;
+    /*background-color: #E9EEF3;*/
     color: #333;
     padding: 0 !important;
 }
@@ -99,10 +69,8 @@ export default {
     padding: 10px !important;
 }
 
-.el-icon-s-marketing, .el-icon-menu, .el-icon-s-goods,
-.el-icon-shopping-cart-full, .el-icon-user-solid {
-    color: #40c9c6 !important;
-    border: 1px solid #40c9c6;
-    border-radius: 5px;
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #40c9c6 !important;
 }
+
 </style>

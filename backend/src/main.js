@@ -10,7 +10,6 @@ Vue.use(ElementUI, { locale });
 window.axios = axios
 axios.defaults.baseURL = 'http://127.0.0.1:8001'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-url'
-axios.defaults.headers.common.Authorization = 'Bearer'
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false
