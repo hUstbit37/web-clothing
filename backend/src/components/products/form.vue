@@ -112,7 +112,7 @@ export default {
       }
     },
     created() {
-        console.log(this.$route.name    )
+        localStorage.setItem('pathCurrentRouter',  this.$route.path)
         this.getCategories()
         if (this.$route.params.id) {
             let product_id = this.$route.params.id

@@ -12,15 +12,16 @@
                 </span>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item disabled>Hello Đức</el-dropdown-item>
-                <el-dropdown-item>Log Out</el-dropdown-item>
+                <el-dropdown-item divided  @click.native="logout">Log Out</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </el-header>
 </template>
 
 <script>
+ import {authService} from "@/services/auth";
 
-export default {
+ export default {
     name: "app-header",
     props: ['isLoggedIn'],
     data() {
@@ -31,6 +32,15 @@ export default {
     methods: {
         showRegister() {
             this.$router.push('/register')
+        },
+        logout() {
+            try {
+                authService.logout()
+                this.$router.push('/login')
+            } catch (e) {
+                console.log(e)
+            }
+
         }
     }
 }

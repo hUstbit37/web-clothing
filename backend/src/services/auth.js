@@ -1,6 +1,6 @@
 import axios from 'axios'
 import decode from "jwt-decode";
-import Vue from "vue";
+import router from "@/router";
 
 const AUTH_TOKEN_KEY = 'authToken'
 export const authService = {
@@ -9,41 +9,50 @@ export const authService = {
     isLoggedIn
 }
 
-function login(email, password){
-    axios.post('api/v1/login', {
+async function login(email, password) {
+    await axios.post('api/v1/login', {
         email: email,
         password: password
     }).then((res) => {
         console.log(res)
         if (res.status === 200 && res.data.token) {
-           setAuthToken(res.data.token)
+            setAuthToken(res.data.token)
+            console.log('rediect', router.currentRoute.query.redirect)
+            router.push('/')
         }
-    }).catch((err) => {
-        console.log(err)
     })
+        .catch((err) => {
+            console.log(err)
+        })
 }
-function logout(){
+
+function logout() {
     axios.defaults.headers.common['Authorization'] = ''
     localStorage.removeItem(AUTH_TOKEN_KEY)
 }
+
 function isLoggedIn() {
     let authToken = getAuthToken()
     return !!authToken && !isTokenExpired(authToken)
 }
+
 function setAuthToken(token) {
-    axios.defaults.headers.common['Authorization']= `Bearer ${token}`
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     localStorage.setItem(AUTH_TOKEN_KEY, token)
 }
-function getAuthToken(){
+
+function getAuthToken() {
     return localStorage.getItem(AUTH_TOKEN_KEY)
 }
-function getTokenExpirationDate(token){
+
+function getTokenExpirationDate(token) {
     let endcodeToken = decode(token)
-    if(!endcodeToken.exp) {
+    if (!endcodeToken.exp) {
         return null
     }
-    return new Date(endcodeToken.exp*1000)
+    return new Date(endcodeToken.exp * 1000)
 }
+
 function isTokenExpired(token) {
     return getTokenExpirationDate(token) < new Date()
 }

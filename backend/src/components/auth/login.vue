@@ -16,7 +16,7 @@
                               placeholder="Eg: *******"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button class="login-submit" type="primary" @click="login('loginForm')" plain>Đăng nhập
+                    <el-button class="login-submit" type="primary" @click="submit('loginForm')" plain>Đăng nhập
                     </el-button>
                 </el-form-item>
             </el-form>
@@ -50,16 +50,15 @@ export default {
             }
         }
     },
+
     methods: {
-        login(formName) {
+        submit(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     authService.login(this.user.email, this.user.password)
-                    this.$router.push('/')
-
                 }
             })
-        }
+        },
     }
 }
 </script>

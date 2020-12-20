@@ -76,6 +76,7 @@ export default {
         }
     },
     created() {
+        localStorage.setItem('pathCurrentRouter',  this.$route.path)
         this.getData()
     },
     methods: {

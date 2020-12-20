@@ -27,31 +27,49 @@ const router = new VueRouter({
             path: '/category',
             name: 'category',
             component: CategoryList,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/category/create',
             name: 'create-category',
-            component: CategoryForm
+            component: CategoryForm,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/category/edit/:id',
             name: 'edit-category',
-            component: CategoryForm
+            component: CategoryForm,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/product',
             name: 'product',
-            component: ProductList
+            component: ProductList,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/product/create',
             name: 'create-product',
-            component: ProductForm
+            component: ProductForm,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/product/edit/:id',
             name: 'edit-product',
-            component: ProductForm
+            component: ProductForm,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/order',
@@ -65,22 +83,22 @@ const router = new VueRouter({
         },
     ]
 });
-// const originalPush = VueRouter.prototype.push
-// VueRouter.prototype.push = function push (location, onResolve, onReject) {
-//     if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
-//     return originalPush.call(this, location).catch(err => err)
-// }
-router.beforeEach((to, from, next) => {
 
+router.beforeEach((to, from, next) => {
+    console.log(!authService.isLoggedIn())
     if (to.matched.some(record => record.meta.requiresAuth)) {
         if (!authService.isLoggedIn()) {
+            console.log('to1', to)
             next({
                 path: '/login',
-                query: { redirect: to.fullPath }
+                query: {redirect: to.fullPath}
             })
         } else {
             next()
         }
+    } else if (to.name === 'auth.login' && authService.isLoggedIn()) {
+        console.log('to', to)
+        next({path: localStorage.getItem('pathCurrentRouter')})
     } else {
         next() // make sure to always call next()!
     }

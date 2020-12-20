@@ -87,7 +87,7 @@ export default {
         }
     },
     created() {
-        console.log('this router', this.$router.currentRoute)
+        localStorage.setItem('pathCurrentRouter',  this.$route.path)
         this.getCategories()
         if (this.$router.currentRoute.params.id) {
             this.category_id = this.$router.currentRoute.params.id

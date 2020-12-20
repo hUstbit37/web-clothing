@@ -1,8 +1,8 @@
 <template>
     <div id="app">
-        <app-header :isLoggedIn="isloggedIn"/>
+        <app-header :isLoggedIn="isLoggedIn()"/>
         <el-container>
-            <app-aside v-if="isloggedIn"/>
+            <app-aside v-if="isLoggedIn()"/>
             <el-main :style="{ marginLeft: marginLeftNotLogin }">
                 <router-view/>
             </el-main>
@@ -20,13 +20,14 @@ export default {
     name: "app",
     data() {
         return {
-            isloggedIn: null,
             marginLeftNotLogin: null
         }
     },
 
-    mounted() {
-        this.isloggedIn = authService.isLoggedIn()
+    methods: {
+        isLoggedIn() {
+            return authService.isLoggedIn()
+        }
     },
     components: {
         AppAside,
