@@ -125,6 +125,7 @@ export default {
                             } else {
                                 this.$router.push('/category')
                                 this.$message({
+                                    customClass: 'messageClass',
                                     message: 'Bạn đã cập nhật thành công danh mục.',
                                     type: 'success'
                                 });
@@ -204,4 +205,5 @@ export default {
 .el-form {
     margin-top: 15px;
 }
+
 </style>

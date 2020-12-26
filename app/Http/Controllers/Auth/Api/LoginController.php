@@ -27,7 +27,7 @@ class LoginController extends Controller
                 'expires_in' => $this->guard()->factory()->getTTL() * 60
             ]);
         }
-        return response()->json(['error' => 'Unauthorized']);
+        return response()->json(['error' => 'Email hoặc mật khẩu không đúng']);
     }
 
     private function guard()

@@ -48,7 +48,7 @@ class ProductRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'erros' => [
+            'error' => [
                 'status' => false,
                 'code' => Response::HTTP_UNPROCESSABLE_ENTITY,
                 'message' => $validator->errors()

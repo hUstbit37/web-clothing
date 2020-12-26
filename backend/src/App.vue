@@ -2,9 +2,13 @@
     <div id="app">
         <app-header :isLoggedIn="isLoggedIn()"/>
         <el-container>
+            <transition name="fade" mode="out-in">
             <app-aside v-if="isLoggedIn()"/>
-            <el-main :style="{ marginLeft: marginLeftNotLogin }">
-                <router-view/>
+            </transition>
+            <el-main :style="{ marginLeft: marginLeftLoggedIn()}">
+                <transition name="fade" mode="out-in">
+                    <router-view :key="isLoggedIn()"></router-view>
+                </transition>
             </el-main>
         </el-container>
     </div>
@@ -20,11 +24,17 @@ export default {
     name: "app",
     data() {
         return {
-            marginLeftNotLogin: null
+
         }
     },
 
     methods: {
+        marginLeftLoggedIn() {
+          if (!authService.isLoggedIn()){
+              return 0
+          }
+          return null
+        },
         isLoggedIn() {
             return authService.isLoggedIn()
         }
@@ -33,11 +43,11 @@ export default {
         AppAside,
         AppHeader,
     }
-
 };
 </script>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -48,10 +58,25 @@ export default {
     font-family: "Popines", sans-serif;
 }
 
+
+.fade-enter{
+    opacity: 0;
+    transform: translateX(-2em);
+}
+.fade-leave-to {
+    opacity: 0;
+    transform: translateX(2em);
+}
+
+  .fade-enter-active, .fade-leave-active {
+    transition: all .3s ease;
+
+}
+
 .el-main {
+    overflow: hidden !important;
     margin-top: 60px;
     margin-left: 200px;
-    /*background-color: #E9EEF3;*/
     color: #333;
     padding: 0 !important;
 }
@@ -72,6 +97,9 @@ export default {
 
 .el-pagination.is-background .el-pager li:not(.disabled).active {
     background-color: #40c9c6 !important;
+}
+.messageClass {
+    z-index: 9999 !important;
 }
 
 </style>

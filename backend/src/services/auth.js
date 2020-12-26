@@ -3,6 +3,7 @@ import decode from "jwt-decode";
 import router from "@/router";
 
 const AUTH_TOKEN_KEY = 'authToken'
+let pathCurrentRouter = localStorage.getItem('pathCurrentRouter') ?? '/'
 export const authService = {
     login,
     logout,
@@ -14,11 +15,12 @@ async function login(email, password) {
         email: email,
         password: password
     }).then((res) => {
-        console.log(res)
         if (res.status === 200 && res.data.token) {
             setAuthToken(res.data.token)
-            console.log('rediect', router.currentRoute.query.redirect)
-            router.push('/')
+            router.push({path: pathCurrentRouter})
+        } else {
+            console.log(res)
+            alert(res.data.error)
         }
     })
         .catch((err) => {

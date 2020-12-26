@@ -4,15 +4,15 @@
             <i class="el-icon-s-home"></i>
             Trang quản trị
         </span>
-        <span @click="showRegister" v-if="!isLoggedIn" class="admin-register">Sign Up</span>
+        <span @click="showRegister" v-if="!isLoggedIn" class="admin-register">Đăng ký</span>
         <el-dropdown v-if="isLoggedIn" class="admin-dropdown">
                 <span class="el-dropdown-link">
-                    <el-avatar
+                    <el-avatar class="admin-avatar"
                         src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80"></el-avatar>
                 </span>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item disabled>Hello Đức</el-dropdown-item>
-                <el-dropdown-item divided  @click.native="logout">Log Out</el-dropdown-item>
+                <el-dropdown-item divided  @click.native="logout">Đăng xuất</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </el-header>
@@ -40,7 +40,6 @@
             } catch (e) {
                 console.log(e)
             }
-
         }
     }
 }
@@ -59,9 +58,10 @@
 
 .admin-title {
     position: absolute;
-    top: 20px;
+    top: 35%;
     font-size: 20px;
-    cursor: pointer
+    cursor: pointer;
+    font-weight: 600;
 }
 .admin-register {
     position: absolute;
@@ -69,6 +69,7 @@
     top: 35%;
     cursor: pointer;
     font-weight: 600;
+    font-size: 18px;
 }
 .admin-register:hover {
     color: #40c9c6;
@@ -78,5 +79,8 @@
     position: absolute;
     right: 50px;
     top: 10px;
+}
+.admin-avatar {
+    cursor: pointer;
 }
 </style>
