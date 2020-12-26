@@ -29,14 +29,16 @@ class UserRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'name'      => 'required',
+            'name'      => 'bail|required',
             'email'     => [
+                'bail',
                 'required',
                 'email:dns',
                 new UserVerifyValidate($request)
             ],
-            'phone'     => 'required|numeric|digits:10',
+            'phone'     => 'bail|required|numeric|digits:10',
             'password'  => [
+                'bail',
                 'required',
                 'min:8',
                 'regex:/^(?=.*[a-zA-Z])(?=.*[0-9]).+$/',
@@ -47,7 +49,7 @@ class UserRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response() ->json([
-            'erros' => [
+            'error' => [
                 'status'    => false,
                 'code'      => Response::HTTP_UNPROCESSABLE_ENTITY,
                 'message'   => $validator->errors()
