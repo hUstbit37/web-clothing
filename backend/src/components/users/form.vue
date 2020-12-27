@@ -6,7 +6,7 @@
             <el-breadcrumb-item>{{ urlName }}</el-breadcrumb-item>
         </el-breadcrumb>
 
-        <el-col :span="16">
+        <el-col :xs="20" :sm="20" :md="20" :lg="16">
             <el-form :model="user" :rules="rules" ref="formUser" label-width="200px">
                 <el-form-item label="Họ tên" prop="name">
                     <el-input v-model="user.name" size="small">
