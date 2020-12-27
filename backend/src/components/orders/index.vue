@@ -1,8 +1,18 @@
 <template>
+    <div>
+        <el-row style="padding: 10px">
+            <el-col :span="12">
+                <h1>Danh sách đơn hàng</h1>
+            </el-col>
+        </el-row>
     <el-table
         :data="tableData"
         border
         style="width: 100%">
+        <el-table-column type="selection" width="45" align="center">
+        </el-table-column>
+        <el-table-column align="center" type="index" min-width="45" label="#" :index="customIndex">
+        </el-table-column>
         <el-table-column type="expand">
             <template slot-scope="props">
                 <p>State: {{ props.row.state }}</p>
@@ -34,6 +44,7 @@
             </template>
         </el-table-column>
     </el-table>
+    </div>
 </template>
 
 <script>
@@ -93,6 +104,14 @@ export default {
                 zip: 'CA 90036'
             }]
         }
+    },
+    created() {
+        sessionStorage.setItem('pathCurrentRouter', this.$route.path)
+    },
+    methods: {
+        customIndex(index) {
+            return this.pageSize * (this.currentPage - 1)  + 1 + index;
+        },
     }
 }
 </script>

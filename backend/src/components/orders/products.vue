@@ -1,10 +1,12 @@
 <template>
-<div>product</div>
+    <div>products view in order</div>
 </template>
 
 <script>
 export default {
-name: "prodcts"
+    data() {
+        return {}
+    },
 }
 </script>
 

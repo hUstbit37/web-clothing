@@ -58,7 +58,6 @@ export default {
     font-family: "Popines", sans-serif;
 }
 
-
 .fade-enter{
     opacity: 0;
     transform: translateX(-2em);
@@ -70,7 +69,6 @@ export default {
 
   .fade-enter-active, .fade-leave-active {
     transition: all .3s ease;
-
 }
 
 .el-main {

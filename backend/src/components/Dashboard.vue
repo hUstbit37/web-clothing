@@ -59,7 +59,16 @@
 </template>
 
 <script>
-export default {}
+export default {
+    data() {
+        return {
+
+        }
+    },
+    created() {
+        sessionStorage.setItem('pathCurrentRouter',  this.$route.path)
+    }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

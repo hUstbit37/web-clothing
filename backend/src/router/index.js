@@ -128,7 +128,7 @@ router.beforeEach((to, from, next) => {
     } else if (to.name === 'auth.login' && authService.isLoggedIn()) {
         console.log('LoggedIn')
         next({
-            path: localStorage.getItem('pathCurrentRouter'),
+            path: sessionStorage.getItem('pathCurrentRouter'),
         })
     } else {
         next() // make sure to always call next()!

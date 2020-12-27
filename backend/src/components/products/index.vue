@@ -76,7 +76,7 @@ export default {
         }
     },
     created() {
-        localStorage.setItem('pathCurrentRouter',  this.$route.path)
+        sessionStorage.setItem('pathCurrentRouter',  this.$route.path)
         this.getData()
     },
     methods: {
@@ -129,7 +129,6 @@ export default {
         getData() {
             this.loading = true
             this.$axios.get(`api/v1/product?page=${this.currentPage}`).then((res) => {
-                console.log(res.data.data)
                 this.pageSize = res.data.data.per_page
                 this.total = res.data.data.total;
                 this.products = res.data.data.data

@@ -69,7 +69,7 @@ export default {
         }
     },
     created() {
-        localStorage.setItem('pathCurrentRouter',  this.$route.path)
+        sessionStorage.setItem('pathCurrentRouter',  this.$route.path)
         this.getUsers()
     },
     methods: {
@@ -112,5 +112,7 @@ export default {
 </script>
 
 <style scoped>
-
+.el-button--primary.is-plain {
+    float: right;
+}
 </style>

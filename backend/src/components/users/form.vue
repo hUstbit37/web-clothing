@@ -86,7 +86,7 @@ export default {
         }
     },
     created() {
-        localStorage.setItem('pathCurrentRouter',  this.$route.path)
+        sessionStorage.setItem('pathCurrentRouter',  this.$route.path)
         if (this.$route.params.id) {
             let user_id = this.$route.params.id
             this.urlName = 'edit'
