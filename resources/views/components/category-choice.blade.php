@@ -1,5 +1,6 @@
 @if(!empty($categoriesChoice))
 <category>
+    <div class="row">
         @foreach($categoriesChoice as $categoryChoice)
         <div class="item">
             <div class="info">
@@ -11,5 +12,6 @@
             </div>
         </div>
         @endforeach
+    </div>
 </category>
 @endif

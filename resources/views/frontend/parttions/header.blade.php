@@ -1,5 +1,5 @@
 <div id="header-full">
-    <line-header class="wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.1s">
+    <line-header>
         <div class="container">
             <div class="row">
                 <div class="left">⚡ HAPPY HOLIDAY DEALS ON EVERYTHING ⚡</div>
@@ -18,13 +18,14 @@
         </div>
     </line-header>
 
-    <header class="wow slideInRight">
+    <header>
         <div class="container">
             <div class="row rowAlign">
-                <div class="menu-bar" onclick="">
-                    <i class="fas fa-bars" id="icon-bar"></i>
-                </div>
+
                 <div class="logo">
+                    <span class="menu-bar">
+                        <i class="fas fa-bars " id="icon-bar"></i>
+                    </span>
                     <a href="/" title="Trang chủ"><img src="{{ url('/images/logo.png') }}" alt=""></a>
                 </div>
                 <div class="menu" id="menu">

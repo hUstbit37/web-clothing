@@ -8,7 +8,8 @@
 body {
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;
-    font-size: 14px
+    font-size: 14px;
+    /*overflow-x: hidden;*/
 }
 
 img {
@@ -35,14 +36,13 @@ p {
 }
 
 .container {
-    width: 1200px;
+    width: 95%;
     margin: auto
 }
 
 .row {
     display: flex;
     justify-content: space-between
-
 }
 
 .rowAlign {
@@ -91,7 +91,7 @@ line-header {
     background: url("../images/backgorund-lineheader.jpg") no-repeat top center;
     background-size: cover;
     color: #fff;
-    padding: 10px 0;
+    padding: 10px 15px;
     font-weight: 500
 }
 
@@ -117,8 +117,9 @@ line-header .right div.social {
 }
 
 header {
-    padding: 20px 0;
+    padding: 15px 25px;
     /*background: #FFFFFF;*/
+    width: 100%;
 }
 
 header .menu-bar {
@@ -128,7 +129,7 @@ header .menu-bar {
 
 header .logo {
     font-weight: 600;
-    font-size: 30px
+    font-size: 30px;
 }
 
 header .logo img {
@@ -142,11 +143,11 @@ header .menu {
 header .menu ul li {
     display: inline-block;
     text-transform: capitalize;
-    font-size: 15px;
-    margin: 0 20px;
+    font-size: 16px;
+    margin: 0 10px;
     font-weight: 500;
     position: relative;
-    padding: 15px 0;
+    /*padding: 15px 0;*/
 }
 
 header .menu ul li:hover ul {
@@ -176,6 +177,10 @@ header .menu ul li ul li {
 
 header .menu ul li a:hover {
     color: #ff6f61
+}
+
+header .subFunctional {
+    font-size: 16px;
 }
 
 header .subFunctional a {
@@ -995,3 +1000,23 @@ div.container nav ul.pagination li.page-item.active {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px)  {
+    header .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    header .logo .menu-bar{
+        display: inline-block;
+    }
+    header .logo img{
+        display: inline-block;
+    }
+    header .menu{
+        display: none;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 767.98px) {
+
+}

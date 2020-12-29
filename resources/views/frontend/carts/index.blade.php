@@ -51,10 +51,13 @@
                     @endforeach
                 </div>
             <div class="cart-total-money">
+                @if($total)
                 <a href="{{ route('cart.update') }}">
                     <button class="button-hover" type="submit" style="width: 100px; font-size: 17px; background: #e85205; ">Cập nhật
                     </button>
-                </a>                Tổng tiền:
+                </a>
+                @endif
+                    Tổng tiền:
                 <strong>{{ number_format($total) }}₫</strong>
             </div>
             </form>

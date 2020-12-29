@@ -17,11 +17,7 @@
     <link rel="stylesheet" href="{{ url('css/jquery.fancybox.css') }}"/>
     <link rel="stylesheet" href="{{ url('css/style.css') }}">
     <link rel="stylesheet" href="{{ url('css/mobile.css') }}">
-{{--    <link rel='stylesheet' href='https://cdn.rawgit.com/daneden/animate.css/v3.1.0/animate.min.css'>--}}
-{{--    <script src='https://cdn.rawgit.com/matthieua/WOW/1.0.1/dist/wow.min.js'></script>--}}
-{{--    <script>--}}
-{{--        new WOW().init();--}}
-{{--    </script>--}}
+
 </head>
 <body>
 

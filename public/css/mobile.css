@@ -11,6 +11,9 @@
     .titlePrimary {
         font-size: 30px;
     }
+    line-header{
+        padding: 10px 0;
+    }
     line-header .right {
         width: 100%;
         text-align: center;
@@ -36,8 +39,13 @@
         padding: 3px 0;
         position: relative;
     }
+    header .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     header .menu-bar{
-        display: block;
+        display: inline-block;
     }
     header .row{
         /*position: relative;*/
@@ -71,6 +79,9 @@
         margin: 0;
         border-bottom: 1px solid #a0a0a0;
         /*position: relative;*/
+    }
+    header .subFunctional #searchShow {
+        margin: 10px;
     }
     header .subFunctional a {
         margin: 10px
