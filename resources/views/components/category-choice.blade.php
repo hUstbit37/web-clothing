@@ -1,6 +1,5 @@
 @if(!empty($categoriesChoice))
 <category>
-    <div class="row wow slideInRight" data-wow-duration="1.5s" data-wow-delay="0.4s">
         @foreach($categoriesChoice as $categoryChoice)
         <div class="item">
             <div class="info">
@@ -12,6 +11,5 @@
             </div>
         </div>
         @endforeach
-    </div>
 </category>
 @endif

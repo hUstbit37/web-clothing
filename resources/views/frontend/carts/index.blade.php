@@ -50,13 +50,14 @@
                         </div>
                     @endforeach
                 </div>
-
-            </form>
             <div class="cart-total-money">
-                <button type="submit" style="background: #e85205; padding: 5px; border: navajowhite">Cập nhật</button>
-                Tổng tiền:
+                <a href="{{ route('cart.update') }}">
+                    <button class="button-hover" type="submit" style="width: 100px; font-size: 17px; background: #e85205; ">Cập nhật
+                    </button>
+                </a>                Tổng tiền:
                 <strong>{{ number_format($total) }}₫</strong>
             </div>
+            </form>
             <div class="cart-control">
                 <a href="/">
                     <button class="button-hover">

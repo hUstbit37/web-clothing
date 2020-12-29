@@ -1,6 +1,6 @@
 @if(!empty($postsChoice))
 <high-lights>
-    <div class="container wow slideInRight" data-wow-duration="2s" data-wow-delay="1s">
+    <div class="container">
         <div class="titlePrimary">
             Tạp chí thời trang 2020
             <p>Những bộ sưu tập hot nhất trong năm 2020.</p>
@@ -15,7 +15,6 @@
                 </p>
             </div>
             @endforeach
-
         </div>
     </div>
 </high-lights>

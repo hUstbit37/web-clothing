@@ -85,6 +85,9 @@
     high-lights .item {
         width: 100% !important
     }
+    high-lights .item{
+        height: 40vh;
+    }
     list-product .filter .item {
         width: 100%;
         margin-top: 15px

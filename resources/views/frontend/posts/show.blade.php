@@ -1,8 +1,8 @@
 @extends('layouts.frontend.master')
 
-@section('page_title', $post->meta_title ?? $post->name)
-@section('page_desc', $post->meta_desc ?? $post->name)
-@section('meta_keyword', $post->meta_keyword ?? $post->name)
+@section('page_title', $post->meta_title ?? $post->title)
+@section('page_desc', $post->meta_desc ?? $post->title)
+@section('meta_keyword', $post->meta_keyword ?? $post->title)
 
 @section('main_content')
 <div class="subDetail" style="margin-bottom: 25px">

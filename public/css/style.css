@@ -236,19 +236,19 @@ category .item {
 }
 
 category .item:first-child {
-    background: rgba(0, 0, 0, 0.3) url(../images/cover-1.jpg) no-repeat center top;
+    background: rgba(0, 0, 0, 0.3) url(../images/cover-11.jpg) no-repeat center top;
     background-size: cover;
     background-blend-mode: color
 }
 
 category .item:nth-child(even) {
-    background: rgba(0, 0, 0, 0.3) url(../images/cover-2.jpg) no-repeat center top;
+    background: rgba(0, 0, 0, 0.3) url(../images/cover-22.jpg) no-repeat center top;
     background-size: cover;
     background-blend-mode: color
 }
 
 category .item:last-child {
-    background: rgba(0, 0, 0, 0.3) url(../images/cover-3.jpg) no-repeat center top;
+    background: rgba(0, 0, 0, 0.3) url(../images/cover-33.jpg) no-repeat center top;
     background-size: cover;
     background-blend-mode: color
 }
@@ -332,7 +332,7 @@ high-lights {
 }
 
 high-lights .item {
-    height: 35vh;
+    height: 45vh;
     margin-top: 25px;
     display: flex;
     align-items: center;
@@ -354,37 +354,37 @@ high-lights .item:hover p {
 
 high-lights .item:nth-child(2) {
     width: 68%;
-    background: url("../images/product-2.jpg") no-repeat center top;
+    background: url("../images/product-22.jpg") no-repeat center;
     background-size: cover
 }
 
 high-lights .item:nth-child(2) p {
     text-align: left;
-    color: #545454;
+    color: #FFFFFF;
     margin: 0
 }
 
 high-lights .item:nth-child(3) {
     width: 68%;
-    background: url("../images/product-3.jpg") no-repeat center top;
+    background: url("../images/hight-light-dress-nancy.jpg") no-repeat center top;
     background-size: cover
 }
 
 high-lights .item:nth-child(3) p {
     text-align: left;
-    color: #545454;
+    color: #FFFFFF;
     margin: 0
 }
 
 high-lights .item:first-child {
     width: 30%;
-    background: url("../images/rsz_img-6.jpg") no-repeat center top;
+    background: url("../images/img-11.jpg") no-repeat center top;
     background-size: cover
 }
 
 high-lights .item:last-child {
     width: 30%;
-    background: url("../images/product-4.jpg") no-repeat center top;
+    background: url("../images/hight-light-sweatshirt-kyj.jpg") no-repeat center top;
     background-size: cover
 }
 

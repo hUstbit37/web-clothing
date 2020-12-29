@@ -13,18 +13,20 @@ $(document).ready(function () {
 
     $('.minus1').on('click', function () {
         let id = $(this).parent().attr('id');
-        let currentVal = parseInt($('#quantity-' + id).val());
+        let idName = $('#quantity-' + id);
+        let currentVal = parseInt(idName.val());
         console.log(currentVal);
         if (!isNaN(currentVal) && currentVal > 0) {
-            $('#quantity-' + id).val(currentVal - 1);
+           idName.val(currentVal - 1);
         }
     })
     $('.add1').on('click', function () {
         let id = $(this).parent().attr('id');
-        let currentVal = parseInt($('#quantity-' + id).val());
+        let idName = $('#quantity-' + id);
+        let currentVal = parseInt(idName.val());
         console.log(currentVal);
         if (!isNaN(currentVal)) {
-            $('#quantity-' + id).val(currentVal + 1);
+            idName.val(currentVal + 1);
         }
     })
 

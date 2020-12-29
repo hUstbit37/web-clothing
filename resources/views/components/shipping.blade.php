@@ -2,7 +2,7 @@
     <div class="container">
     	{{ $slot ?? null }}
 
-        <div class="row wow slideInLeft" data-wow-duration="2s" data-wow-delay="0.5s">
+        <div class="row">
             <div class="item ">
                 <div class="ic">
                     <i class="fas fa-truck"></i>

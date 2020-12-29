@@ -8,14 +8,13 @@
             <div class="titlePrimary">
                 Tìm kiếm
                 <p>Có {{ $productSearchCount }} sản phẩm cho tìm kiếm</p>
-{{--                <p style="background: #111111; width: 60px; height: 4px;">a</p>--}}
             </div>
 
             <div>Kết quả tìm kiếm cho <i>"{{app('request')->input('keyword')}}"</i></div>
             <x-search></x-search>
             <div class="__product">
                 @foreach($productSearchs as $productSearch )
-                    <div class="item wow slideInRight" data-wow-duration="1s" data-wow-delay="1s" >
+                    <div class="item" >
                         <div class="image">
                             <a href="{{ url($productSearch->slug).'/product' }}"><img src="{{ url('images/product-cover.jpg') }}" alt=""></a>
                             <div class="function">
