@@ -2,7 +2,7 @@
     <line-header>
         <div class="container">
             <div class="row">
-                <div class="left">⚡ HAPPY HOLIDAY DEALS ON EVERYTHING ⚡</div>
+                <div class="left">⚡HAPPY HOLIDAY DEALS ON EVERYTHING⚡</div>
                 <div class="right">
                     <a href="">Shipping</a>
                     <a href="">FAQ</a>
@@ -32,15 +32,23 @@
                     <x-menu></x-menu>
                 </div>
                 <div class="subFunctional">
-                    <i id="searchShow" class="fas fa-search" style="cursor: pointer"></i>
-                    <a href=""><i class="fas fa-user"></i></a>
-                    <a href=""><i class="fas fa-heart"></i></a>
-                    <a href="{{ route('cart.index') }}">
+                    <div><span><i id="searchShow" class="fas fa-search"></i></span></div>
+                    <div class="user-dropdown">
+                        <span><i class="fas fa-user"></i></span>
+                        <div class="user-dropdown-menu">
+                            <a class="user-dropdown-item" href="#">Đăng nhập</a>
+                            <a class="user-dropdown-item" href="#">Đăng ký</a>
+                        </div>
+                    </div>
+                    <div>
+                        <span><i class="fas fa-heart"></i></span>
+                    </div>
+                    <div> <span><a href="{{ route('cart.index') }}">
                         <i class="fas fa-shopping-cart">
                             <span class="count-cart">{{ countCart('cart') }}</span>
                         </i>
+                    </a></span></div>
 
-                    </a>
                 </div>
             </div>
             <form id="form_search" action="{{ url('search') }}" method="get" style="text-align: center; display: none;">
@@ -54,18 +62,4 @@
 
 <script>
 
-    // function myFunction() {
-    //
-    //     let x = document.getElementById("menu");
-    //     let y = document.getElementById("icon-bar");
-    //     if (x.style.display === "block") {
-    //         y.classList.add('fa-bars');
-    //         y.classList.remove('fa-times');
-    //         x.style.display = "none";
-    //     } else {
-    //         y.classList.remove('fa-bars');
-    //         y.classList.add('fa-times');
-    //         x.style.display = "block";
-    //     }
-    // }
 </script>

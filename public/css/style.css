@@ -36,7 +36,7 @@ p {
 }
 
 .container {
-    width: 95%;
+    width: 100%;
     margin: auto
 }
 
@@ -117,7 +117,7 @@ line-header .right div.social {
 }
 
 header {
-    padding: 15px 25px;
+    padding: 12px 25px;
     /*background: #FFFFFF;*/
     width: 100%;
 }
@@ -181,16 +181,48 @@ header .menu ul li a:hover {
 
 header .subFunctional {
     font-size: 16px;
+    display: flex;
+    margin-right: 5px;
 }
 
-header .subFunctional a {
-    margin-left: 10px
+header .subFunctional > div {
+    padding: 0 5px;
 }
 
-header .subFunctional a:hover {
+header .subFunctional div > span {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+header .subFunctional div > span:hover {
     color: #ff6f61
 }
+header .subFunctional .user-dropdown {
+    position: relative;
+}
+header .subFunctional .user-dropdown:hover .user-dropdown-menu  {
+    display: block;
+}
+header .subFunctional .user-dropdown .user-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 25px;
+    right: -70px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1999;
+}
 
+header .subFunctional .user-dropdown .user-dropdown-menu a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+header .subFunctional .user-dropdown .user-dropdown-menu a:hover {
+    background-color: #ff6f61;
+}
 header .fa-shopping-cart {
     position: relative;
 }
@@ -1001,22 +1033,31 @@ div.container nav ul.pagination li.page-item.active {
 
 /*# sourceMappingURL=style.css.map */
 
-@media only screen and (min-width: 768px) and (max-width: 991.98px)  {
+@media only screen and (max-width: 991.98px) {
+    line-header .left {
+        text-align: center;
+        font-size: 12px;
+    }
+
     header .logo {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    header .logo .menu-bar{
+
+    header .logo .menu-bar {
         display: inline-block;
     }
-    header .logo img{
+
+    header .logo img {
         display: inline-block;
     }
-    header .menu{
+
+    header .menu {
         display: none;
     }
 }
-@media only screen and (min-width: 480px) and (max-width: 767.98px) {
 
-}
+/*@media only screen and (max-width: 767.98px) {*/
+
+/*}*/
