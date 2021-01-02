@@ -31,13 +31,28 @@
                 <div class="menu" id="menu">
                     <x-menu></x-menu>
                 </div>
+
                 <div class="subFunctional">
                     <div><span><i id="searchShow" class="fas fa-search"></i></span></div>
                     <div class="user-dropdown">
-                        <span><i class="fas fa-user"></i></span>
+                        <span><i class="fas fa-user user-icon"></i></span>
                         <div class="user-dropdown-menu">
-                            <a class="user-dropdown-item" href="#">Đăng nhập</a>
-                            <a class="user-dropdown-item" href="#">Đăng ký</a>
+                            <div class="user-box-triangle"></div>
+                            @auth
+                                <a class="user-dropdown-item" href="#">Hello {{Auth::user()->name}}</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+                                    @csrf
+                                </form>
+                            @else
+                            <a class="user-dropdown-item" href="{{ route('login')  }}">Đăng nhập</a>
+                            <a class="user-dropdown-item" href="{{ route('register')  }}">Đăng ký</a>
+                            @endauth
                         </div>
                     </div>
                     <div>

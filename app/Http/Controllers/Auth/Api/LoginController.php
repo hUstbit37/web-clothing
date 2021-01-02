@@ -24,7 +24,8 @@ class LoginController extends Controller
             return response()->json([
                 'token' => $token,
                 'token_type' => 'bearer',
-                'expires_in' => $this->guard()->factory()->getTTL() * 60
+                'expires_in' => $this->guard()->factory()->getTTL() * 60,
+                'user' => auth()->user()
             ]);
         }
         return response()->json(['error' => 'Email hoặc mật khẩu không đúng']);
@@ -32,6 +33,6 @@ class LoginController extends Controller
 
     private function guard()
     {
-        return Auth::guard();
+        return Auth::guard('api');
     }
 }

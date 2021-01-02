@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Backend\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

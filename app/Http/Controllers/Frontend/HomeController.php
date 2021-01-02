@@ -16,6 +16,7 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
+//        dd(auth()->check());
         $products = $this->productService->getNewProducts();
     	return view('frontend.home.index', [
     	    'products' => $products

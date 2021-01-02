@@ -34,4 +34,9 @@ $(document).ready(function () {
     $('#info-btn').on('click', function () {
         $('#info').toggle(400);
     });
+
+    //Show/hide user-dropdown
+    $('.user-icon').on('click', function () {
+        $('.user-dropdown-menu').toggle(600)
+    })
 })

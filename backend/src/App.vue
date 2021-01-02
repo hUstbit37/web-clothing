@@ -55,7 +55,7 @@ export default {
 
 #app {
     position: relative;
-    font-family: "Popines", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .fade-enter{
