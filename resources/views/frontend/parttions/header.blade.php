@@ -46,12 +46,13 @@
                                     {{ __('Logout') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none">
                                     @csrf
                                 </form>
                             @else
-                            <a class="user-dropdown-item" href="{{ route('login')  }}">Đăng nhập</a>
-                            <a class="user-dropdown-item" href="{{ route('register')  }}">Đăng ký</a>
+                                <a class="user-dropdown-item" href="{{ route('login')  }}">Đăng nhập</a>
+                                <a class="user-dropdown-item" href="{{ route('register')  }}">Đăng ký</a>
                             @endauth
                         </div>
                     </div>

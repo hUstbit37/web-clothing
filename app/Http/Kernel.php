@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\Backend\CorsMiddleware;
+use App\Http\Middleware\Backend\EnsureEmailIsVerifiedCustom;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -69,5 +70,6 @@ class Kernel extends HttpKernel
         'verify.token' => \App\Http\Middleware\Backend\VerifyTokenMiddleware::class,
         'auth.jwt' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
         'cors' => CorsMiddleware::class,
+        'verified.custom' => EnsureEmailIsVerifiedCustom::class,
     ];
 }

@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes([ 'verify' => true ]);
 
-Route::middleware('verified')->get('/home', 'HomeController@index')->name('home');
+Route::middleware('verified.custom')->get('/home', 'HomeController@index')->name('home');
 
-Route::namespace('Frontend')->group(function () {
+Route::middleware('verified.custom')->namespace('Frontend')->group(function () {
     Route::prefix('cart')->group(function () {
         Route::get('/', 'CartController@index')->name('cart.index');
         Route::get('store/{id}', 'CartController@store')->name('cart.store');
