@@ -2,7 +2,7 @@
     <line-header>
         <div class="container">
             <div class="row">
-                <div class="left">⚡HAPPY HOLIDAY DEALS ON EVERYTHING⚡</div>
+                <div class="left">⚡Fasshion and so much more⚡</div>
                 <div class="right">
                     <a href="">Shipping</a>
                     <a href="">FAQ</a>

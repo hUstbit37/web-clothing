@@ -58,49 +58,6 @@
     header .menu-bar {
         display: inline-block;
     }
-    /*header .menu-bar .fa-bars {*/
-    /*    -webkit-transform: rotate(-45deg) translate(-9px, 6px);*/
-    /*    transform: rotate(-45deg) translate(-9px, 6px);*/
-    /*}*/
-    /*header .menu-bar .fa-times {*/
-    /*    -webkit-transform: rotate(45deg) translate(-8px, -8px);*/
-    /*    transform: rotate(45deg) translate(-8px, -8px);*/
-    /*}*/
-
-    header .menu {
-        display: none;
-        position: absolute;
-        top: 54px;
-        left: 0;
-        z-index: 999;
-        background: #636b6f;
-        width: 100% !important;
-
-    }
-
-    header .menu ul {
-        padding: 0;
-        margin: 0;
-    }
-
-    header .menu-bar .fa-bars {
-        font-size: 25px;
-    }
-
-    header .menu-bar .fa-times {
-        font-size: 31px;
-    }
-
-    header .menu ul li {
-        /*margin: 0 3px;*/
-        display: block;
-        text-transform: capitalize;
-        font-size: 15px;
-        font-weight: 500;
-        margin: 0;
-        border-bottom: 1px solid #a0a0a0;
-        /*position: relative;*/
-    }
 
     category .item {
         width: 100%

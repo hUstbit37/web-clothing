@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ url('css/stylesheet.css') }}"/>
     <link rel="stylesheet" href="{{ url('css/jquery.fancybox.css') }}"/>
     <link rel="stylesheet" href="{{ url('css/style.css') }}">
-    <link rel="stylesheet" href="{{ url('css/mobile.css') }}">
+    <link rel="stylesheet" media="screen and (max-width: 480px)" href="{{ url('css/mobile.css') }}">
 
 </head>
 <body>
