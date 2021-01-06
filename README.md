@@ -1,12 +1,17 @@
 Step 1:
-composer install
+`composer install`
+
 Step 2:
-php artisan migrate
+`php artisan migrate`
+
 Step 3:
-php artisan db:seed
+`php artisan db:seed`
+
 Backend
-cd backend
+`cd backend`
+
 Next Step:
-npm install
+`npm install`
+
 Next Step
-npm run serve
+`npm run serve`
